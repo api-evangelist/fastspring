@@ -1,0 +1,70 @@
+aid: fastspring
+name: FastSpring
+description: >-
+  FastSpring is a full-service ecommerce and merchant-of-record platform for
+  SaaS, software, and digital product companies, handling global payments, tax
+  compliance, subscription billing, checkout, and revenue management. The
+  FastSpring API is a REST interface for managing orders, subscriptions,
+  products, coupons, customers, and webhook events, secured via HTTP Basic
+  Authentication using credentials issued from the FastSpring App Dashboard
+  and with HMAC SHA-256 signing available for webhook payload verification.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Ecommerce
+  - Merchant of Record
+  - Subscription Billing
+  - Payments
+  - SaaS Billing
+  - Checkout
+  - Tax Compliance
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: fastspring:commerce-api
+    name: FastSpring API
+    description: >-
+      REST API for FastSpring's ecommerce platform covering orders,
+      subscriptions, products, coupons, customers, sessions, returns, and
+      webhooks. Authenticated using HTTP Basic credentials issued in the
+      FastSpring App Dashboard under Integrations > API Credentials, with
+      HMAC SHA-256 signing available to verify webhook payloads.
+    humanURL: https://developer.fastspring.com
+    baseURL: https://api.fastspring.com
+    tags:
+      - Ecommerce
+      - Subscription Billing
+      - Payments
+      - Orders
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://developer.fastspring.com/reference
+      - type: Getting Started
+        url: https://developer.fastspring.com/reference/getting-started-with-your-api
+      - type: Authentication
+        url: https://developer.fastspring.com/reference/authentication
+      - type: Webhooks
+        url: https://developer.fastspring.com/reference/webhooks
+      - type: Message Security
+        url: https://developer.fastspring.com/reference/message-security
+
+common:
+  - type: Website
+    url: https://fastspring.com
+  - type: Documentation
+    url: https://developer.fastspring.com
+  - type: Pricing
+    url: https://fastspring.com/pricing
+  - type: Sign Up
+    url: https://fastspring.com/contact-sales
+  - type: App Dashboard
+    url: https://app.fastspring.com
+  - type: Support
+    url: https://fastspring.com/support
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
