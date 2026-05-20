@@ -53,6 +53,10 @@ apis:
         url: https://developer.fastspring.com/reference/message-security
 
 common:
+  - type: GitHubOrganization
+    url: https://github.com/FastSpring
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/fastspring
   - type: Website
     url: https://fastspring.com
   - type: Documentation
