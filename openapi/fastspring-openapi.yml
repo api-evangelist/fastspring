@@ -1,0 +1,598 @@
+openapi: 3.1.0
+info:
+  title: FastSpring API
+  description: >-
+    REST API for FastSpring's ecommerce / merchant-of-record platform.
+    Covers orders, subscriptions, products, coupons, accounts (customers),
+    sessions (checkout), invoices, quotes, returns, events (webhook
+    history), data jobs (reports), and webhook key rotation. Authenticated
+    via HTTP Basic credentials issued from the FastSpring App Dashboard
+    under Integrations > API Credentials. Rate limited to 250 calls per
+    minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header,
+    and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+  - url: https://api.fastspring.com
+    description: FastSpring production API
+tags:
+  - name: Accounts
+  - name: Coupons
+  - name: Orders
+  - name: Products
+  - name: Subscriptions
+  - name: Sessions
+  - name: Invoices
+  - name: Quotes
+  - name: Returns
+  - name: Events
+  - name: Data
+  - name: Webhooks
+security:
+  - BasicAuth: []
+paths:
+  /accounts:
+    get:
+      tags: [Accounts]
+      summary: List accounts
+      responses:
+        '200':
+          description: List of accounts
+    post:
+      tags: [Accounts]
+      summary: Create an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Created account
+  /accounts/{account_id}:
+    parameters:
+      - $ref: '#/components/parameters/AccountId'
+    get:
+      tags: [Accounts]
+      summary: Retrieve an account
+      responses:
+        '200':
+          description: Account
+    patch:
+      tags: [Accounts]
+      summary: Update an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated account
+  /accounts/{account_id}/portal-url:
+    parameters:
+      - $ref: '#/components/parameters/AccountId'
+    get:
+      tags: [Accounts]
+      summary: Get an account's management portal URL
+      responses:
+        '200':
+          description: Portal URL
+  /coupons:
+    get:
+      tags: [Coupons]
+      summary: List coupon identifiers
+      responses:
+        '200':
+          description: Coupons
+  /coupons/{coupon_id}:
+    parameters:
+      - $ref: '#/components/parameters/CouponId'
+    get:
+      tags: [Coupons]
+      summary: Retrieve a coupon
+      responses:
+        '200':
+          description: Coupon
+    post:
+      tags: [Coupons]
+      summary: Create or update a coupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Coupon
+    delete:
+      tags: [Coupons]
+      summary: Delete a coupon
+      responses:
+        '200':
+          description: Deleted
+  /coupons/{coupon_id}/codes:
+    parameters:
+      - $ref: '#/components/parameters/CouponId'
+    get:
+      tags: [Coupons]
+      summary: List codes for a coupon
+      responses:
+        '200':
+          description: Codes
+    post:
+      tags: [Coupons]
+      summary: Add codes to a coupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated codes
+    delete:
+      tags: [Coupons]
+      summary: Delete all codes for a coupon
+      responses:
+        '200':
+          description: Deleted
+  /orders:
+    get:
+      tags: [Orders]
+      summary: List orders
+      responses:
+        '200':
+          description: Orders
+  /orders/{order_id}:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      tags: [Orders]
+      summary: Retrieve an order
+      responses:
+        '200':
+          description: Order
+    patch:
+      tags: [Orders]
+      summary: Update order tags and attributes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated order
+  /products:
+    get:
+      tags: [Products]
+      summary: List product path identifiers
+      responses:
+        '200':
+          description: Products
+    post:
+      tags: [Products]
+      summary: Create or update products (batch up to 300)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Result
+  /products/{product_path}:
+    parameters:
+      - $ref: '#/components/parameters/ProductPath'
+    get:
+      tags: [Products]
+      summary: Retrieve a product
+      responses:
+        '200':
+          description: Product
+    delete:
+      tags: [Products]
+      summary: Delete a product
+      responses:
+        '200':
+          description: Deleted
+  /products/{product_path}/prices:
+    parameters:
+      - $ref: '#/components/parameters/ProductPath'
+    get:
+      tags: [Products]
+      summary: Retrieve product prices
+      responses:
+        '200':
+          description: Prices
+  /subscriptions:
+    get:
+      tags: [Subscriptions]
+      summary: List subscription identifiers
+      responses:
+        '200':
+          description: Subscriptions
+  /subscriptions/{subscription_id}:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags: [Subscriptions]
+      summary: Retrieve a subscription
+      responses:
+        '200':
+          description: Subscription
+    patch:
+      tags: [Subscriptions]
+      summary: Update a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated subscription
+  /subscriptions/{subscription_id}/entries:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags: [Subscriptions]
+      summary: List subscription transactions
+      responses:
+        '200':
+          description: Entries
+  /subscriptions/{subscription_id}/pause:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Pause a subscription
+      responses:
+        '200':
+          description: Paused
+  /subscriptions/{subscription_id}/resume:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Resume a paused subscription
+      responses:
+        '200':
+          description: Resumed
+  /subscriptions/{subscription_id}/cancel:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Cancel a subscription
+      responses:
+        '200':
+          description: Canceled
+  /subscriptions/{subscription_id}/convert:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Convert trial to paid
+      responses:
+        '200':
+          description: Converted
+  /sessions:
+    post:
+      tags: [Sessions]
+      summary: Create a checkout session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Created session
+  /sessions/{session_id}:
+    parameters:
+      - $ref: '#/components/parameters/SessionId'
+    get:
+      tags: [Sessions]
+      summary: Retrieve a session
+      responses:
+        '200':
+          description: Session
+    patch:
+      tags: [Sessions]
+      summary: Update a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated session
+  /sessions/{session_id}/items:
+    parameters:
+      - $ref: '#/components/parameters/SessionId'
+    post:
+      tags: [Sessions]
+      summary: Add items to a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated items
+  /sessions/{session_id}/items/{item_id}:
+    parameters:
+      - $ref: '#/components/parameters/SessionId'
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          type: string
+    patch:
+      tags: [Sessions]
+      summary: Update a session item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated item
+    delete:
+      tags: [Sessions]
+      summary: Delete a session item
+      responses:
+        '200':
+          description: Deleted
+  /sessions/{session_id}/payment-methods:
+    parameters:
+      - $ref: '#/components/parameters/SessionId'
+    get:
+      tags: [Sessions]
+      summary: Retrieve available payment methods for a session
+      responses:
+        '200':
+          description: Payment methods
+  /invoices:
+    post:
+      tags: [Invoices]
+      summary: Create a custom invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Invoice
+  /invoices/{invoice_id}:
+    parameters:
+      - in: path
+        name: invoice_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Invoices]
+      summary: Retrieve an invoice
+      responses:
+        '200':
+          description: Invoice
+  /quotes:
+    get:
+      tags: [Quotes]
+      summary: List quotes
+      responses:
+        '200':
+          description: Quotes
+    post:
+      tags: [Quotes]
+      summary: Create a quote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Created quote
+  /quotes/{quote_id}:
+    parameters:
+      - in: path
+        name: quote_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Quotes]
+      summary: Retrieve a quote
+      responses:
+        '200':
+          description: Quote
+    patch:
+      tags: [Quotes]
+      summary: Update a quote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated quote
+  /quotes/{quote_id}/cancel:
+    parameters:
+      - in: path
+        name: quote_id
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Quotes]
+      summary: Cancel a quote
+      responses:
+        '200':
+          description: Canceled
+  /returns:
+    post:
+      tags: [Returns]
+      summary: Create a return / refund request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Return
+  /returns/{return_id}:
+    parameters:
+      - in: path
+        name: return_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Returns]
+      summary: Retrieve a return
+      responses:
+        '200':
+          description: Return
+  /events:
+    get:
+      tags: [Events]
+      summary: List processed / unprocessed webhook events
+      responses:
+        '200':
+          description: Events
+  /events/{event_id}:
+    parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Events]
+      summary: Mark an event as processed
+      responses:
+        '200':
+          description: Updated
+  /data/jobs/revenue-report:
+    post:
+      tags: [Data]
+      summary: Generate a revenue data job
+      responses:
+        '200':
+          description: Job created
+  /data/jobs/subscription-report:
+    post:
+      tags: [Data]
+      summary: Generate a subscription data job
+      responses:
+        '200':
+          description: Job created
+  /data/jobs/{job_id}:
+    parameters:
+      - in: path
+        name: job_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Data]
+      summary: Get data job status
+      responses:
+        '200':
+          description: Job
+  /data/jobs/{job_id}/download:
+    parameters:
+      - in: path
+        name: job_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Data]
+      summary: Download a completed data job report
+      responses:
+        '200':
+          description: Report
+  /webhooks/{webhook_id}/key:
+    parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+    patch:
+      tags: [Webhooks]
+      summary: Rotate a webhook's HMAC SHA-256 secret
+      responses:
+        '200':
+          description: Rotated
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard
+  parameters:
+    AccountId:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+    CouponId:
+      in: path
+      name: coupon_id
+      required: true
+      schema:
+        type: string
+    OrderId:
+      in: path
+      name: order_id
+      required: true
+      schema:
+        type: string
+    ProductPath:
+      in: path
+      name: product_path
+      required: true
+      schema:
+        type: string
+    SubscriptionId:
+      in: path
+      name: subscription_id
+      required: true
+      schema:
+        type: string
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
