@@ -69,6 +69,8 @@ common:
     url: https://app.fastspring.com
   - type: Support
     url: https://fastspring.com/support
+  - type: LLMsTxt
+    url: https://developer.fastspring.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
