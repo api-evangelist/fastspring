@@ -1,0 +1,1275 @@
+asyncapi: 2.6.0
+info:
+  title: FastSpring Webhooks
+  version: 1.0.0
+  description: >-
+    AsyncAPI 2.6 description of FastSpring's outbound webhook surface.
+    FastSpring delivers events to a seller-configured HTTPS endpoint as
+    HTTP POSTs with a JSON envelope of one or more events. Each request is
+    signed with an HMAC SHA-256 digest of the raw request body, encoded as
+    base64, in the X-FS-Signature header. The shared secret is configured
+    per webhook in the FastSpring App Dashboard under Integrations >
+    Webhooks. Receivers must respond with a 2xx within FastSpring's
+    timeout window; non-2xx responses are retried and unacknowledged
+    events can be replayed via the Events API.
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+  externalDocs:
+    description: FastSpring Webhooks overview
+    url: https://developer.fastspring.com/reference/webhooks-overview
+defaultContentType: application/json
+
+servers:
+  seller-endpoint:
+    url: '{webhook_url}'
+    protocol: https
+    description: >-
+      Seller-hosted HTTPS endpoint registered in the FastSpring App
+      Dashboard. FastSpring POSTs the webhook envelope to this URL.
+    variables:
+      webhook_url:
+        description: Fully qualified seller webhook URL (scheme + host + path).
+        default: https://example.com/webhooks/fastspring
+    security:
+      - hmacSignature: []
+
+channels:
+  webhook:
+    description: >-
+      Single delivery channel for all FastSpring webhook events. The
+      request body is an envelope containing an `events` array; each
+      entry carries a `type` discriminator and an event-specific `data`
+      payload. Subscribe semantics here describe the seller endpoint
+      receiving events from FastSpring.
+    subscribe:
+      operationId: receiveFastSpringWebhook
+      summary: Receive FastSpring webhook events
+      description: >-
+        Receives a webhook envelope from FastSpring. Verify the
+        X-FS-Signature header (base64 HMAC SHA-256 of the raw body)
+        before processing. Iterate the `events` array and dispatch on
+        each event's `type`.
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: 0.3.0
+      message:
+        oneOf:
+          - $ref: '#/components/messages/AccountCreated'
+          - $ref: '#/components/messages/AccountUpdated'
+          - $ref: '#/components/messages/OrderApprovalPending'
+          - $ref: '#/components/messages/OrderCanceled'
+          - $ref: '#/components/messages/OrderCompleted'
+          - $ref: '#/components/messages/OrderFailed'
+          - $ref: '#/components/messages/OrderPaymentPending'
+          - $ref: '#/components/messages/OrderChargeback'
+          - $ref: '#/components/messages/MailingListEntry'
+          - $ref: '#/components/messages/QuoteCreated'
+          - $ref: '#/components/messages/QuoteUpdated'
+          - $ref: '#/components/messages/ReturnCreated'
+          - $ref: '#/components/messages/PayoutEntryCreated'
+          - $ref: '#/components/messages/FulfillmentFailed'
+          - $ref: '#/components/messages/SubscriptionActivated'
+          - $ref: '#/components/messages/SubscriptionCanceled'
+          - $ref: '#/components/messages/SubscriptionChargeCompleted'
+          - $ref: '#/components/messages/SubscriptionChargeFailed'
+          - $ref: '#/components/messages/SubscriptionDeactivated'
+          - $ref: '#/components/messages/SubscriptionPaymentOverdue'
+          - $ref: '#/components/messages/SubscriptionPaymentReminder'
+          - $ref: '#/components/messages/SubscriptionTrialReminder'
+          - $ref: '#/components/messages/SubscriptionUncanceled'
+          - $ref: '#/components/messages/SubscriptionUpdated'
+
+components:
+  securitySchemes:
+    hmacSignature:
+      type: httpApiKey
+      in: header
+      name: X-FS-Signature
+      description: >-
+        Base64-encoded HMAC SHA-256 digest computed over the raw request
+        body using the per-webhook HMAC SHA256 Secret configured in the
+        FastSpring App Dashboard. Receivers must recompute and constant-
+        time compare against this header before trusting the payload.
+
+  messageTraits:
+    FastSpringWebhookHeaders:
+      headers:
+        type: object
+        properties:
+          X-FS-Signature:
+            type: string
+            description: >-
+              Base64-encoded HMAC SHA-256 of the raw request body, signed
+              with the seller's configured HMAC secret.
+          Content-Type:
+            type: string
+            const: application/json
+
+  messages:
+    AccountCreated:
+      name: account.created
+      title: Account Created
+      summary: A new customer account was created.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeAccountCreated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/accountcreated
+
+    AccountUpdated:
+      name: account.updated
+      title: Account Updated
+      summary: An existing customer account was updated.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeAccountUpdated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/accountupdated
+
+    OrderApprovalPending:
+      name: order.approval.pending
+      title: Order Approval Pending
+      summary: An order is awaiting buyer/approver action (e.g. invoice-based purchases).
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeOrderApprovalPending'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/orderapprovalpending
+
+    OrderCanceled:
+      name: order.canceled
+      title: Order Canceled
+      summary: An order was canceled before completion.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeOrderCanceled'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/ordercanceled
+
+    OrderCompleted:
+      name: order.completed
+      title: Order Completed
+      summary: An order completed successfully and payment was captured.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeOrderCompleted'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/ordercompleted
+
+    OrderFailed:
+      name: order.failed
+      title: Order Failed
+      summary: An order attempt failed (e.g. declined payment).
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeOrderFailed'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/orderfailed
+
+    OrderPaymentPending:
+      name: order.payment.pending
+      title: Order Payment Pending
+      summary: An order is awaiting asynchronous payment confirmation.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeOrderPaymentPending'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/orderpaymentpending
+
+    OrderChargeback:
+      name: order.chargeback
+      title: Order Chargeback
+      summary: A chargeback or dispute was filed against an order.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeOrderChargeback'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/order-chargeback
+
+    MailingListEntry:
+      name: mailingListEntry
+      title: Mailing List Entry
+      summary: A buyer subscribed via abandoned-cart or remarketing capture.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeMailingListEntry'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/mailinglistentry-webhooks
+
+    QuoteCreated:
+      name: quote.created
+      title: Quote Created
+      summary: A new B2B quote was created.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeQuoteCreated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/quotecreated
+
+    QuoteUpdated:
+      name: quote.updated
+      title: Quote Updated
+      summary: An existing B2B quote was updated.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeQuoteUpdated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/quoteupdated
+
+    ReturnCreated:
+      name: return.created
+      title: Return Created
+      summary: A refund or return was created against a prior order.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeReturnCreated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/returncreated
+
+    PayoutEntryCreated:
+      name: payoutEntry.created
+      title: Payout Entry Created
+      summary: A new order or return entry was created for payout processing.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopePayoutEntryCreated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/payoutentrycreated
+
+    FulfillmentFailed:
+      name: fulfillment.failed
+      title: Fulfillment Failed
+      summary: A fulfillment action (license/file/script) failed.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeFulfillmentFailed'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/fulfillmentfailed
+
+    SubscriptionActivated:
+      name: subscription.activated
+      title: Subscription Activated
+      summary: A new subscription was activated (including trial start).
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionActivated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscriptionactivated
+
+    SubscriptionCanceled:
+      name: subscription.canceled
+      title: Subscription Canceled
+      summary: A subscription was canceled (effective at end of current period).
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionCanceled'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscription-canceled
+
+    SubscriptionChargeCompleted:
+      name: subscription.charge.completed
+      title: Subscription Charge Completed
+      summary: A recurring subscription charge succeeded.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionChargeCompleted'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscription-charge-completed
+
+    SubscriptionChargeFailed:
+      name: subscription.charge.failed
+      title: Subscription Charge Failed
+      summary: A recurring subscription charge failed (dunning may begin).
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionChargeFailed'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscription-charge-failed
+
+    SubscriptionDeactivated:
+      name: subscription.deactivated
+      title: Subscription Deactivated
+      summary: A subscription was deactivated (entitlement should end).
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionDeactivated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscription-deactivated
+
+    SubscriptionPaymentOverdue:
+      name: subscription.payment.overdue
+      title: Subscription Payment Overdue
+      summary: A subscription is past due on a recurring charge.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionPaymentOverdue'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscriptionpaymentoverdue
+
+    SubscriptionPaymentReminder:
+      name: subscription.payment.reminder
+      title: Subscription Payment Reminder
+      summary: A scheduled rebill is approaching for a subscription.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionPaymentReminder'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscriptionpaymentreminder
+
+    SubscriptionTrialReminder:
+      name: subscription.trial.reminder
+      title: Subscription Trial Reminder
+      summary: A subscription trial is approaching its end.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionTrialReminder'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscriptiontrialreminder
+
+    SubscriptionUncanceled:
+      name: subscription.uncanceled
+      title: Subscription Uncanceled
+      summary: A previously canceled subscription was reinstated.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionUncanceled'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscriptionuncanceled
+
+    SubscriptionUpdated:
+      name: subscription.updated
+      title: Subscription Updated
+      summary: A subscription's details (plan, add-ons, schedule) were updated.
+      traits:
+        - $ref: '#/components/messageTraits/FastSpringWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelopeSubscriptionUpdated'
+      externalDocs:
+        url: https://developer.fastspring.com/reference/subscription-updated
+
+  schemas:
+    WebhookEnvelope:
+      type: object
+      description: >-
+        FastSpring webhook envelope. Every webhook POST body is an
+        envelope of one or more events. Receivers should iterate
+        `events` and dispatch on `type`.
+      required:
+        - events
+      properties:
+        events:
+          type: array
+          minItems: 1
+          description: One or more events delivered in a single POST.
+          items:
+            $ref: '#/components/schemas/EventBase'
+
+    EventBase:
+      type: object
+      description: Common envelope fields shared by every FastSpring event.
+      required:
+        - id
+        - type
+        - created
+        - live
+        - processed
+      properties:
+        id:
+          type: string
+          description: Unique event identifier; used to acknowledge or replay via the Events API.
+        type:
+          type: string
+          description: Event type discriminator (e.g. order.completed, subscription.activated).
+        created:
+          type: integer
+          format: int64
+          description: Event creation timestamp in epoch milliseconds.
+        live:
+          type: boolean
+          description: True if the event originated from a live store; false for test events.
+        processed:
+          type: boolean
+          description: >-
+            Server-side processed flag. FastSpring marks events processed
+            once the receiver responds 2xx. Sellers can also flip this
+            via the Events API.
+        data:
+          type: object
+          description: Event-specific payload. See per-event schemas for shape.
+          additionalProperties: true
+
+    AccountCreatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: account.created
+            data:
+              $ref: '#/components/schemas/AccountData'
+
+    AccountUpdatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: account.updated
+            data:
+              $ref: '#/components/schemas/AccountData'
+
+    OrderApprovalPendingEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: order.approval.pending
+            data:
+              $ref: '#/components/schemas/OrderData'
+
+    OrderCanceledEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: order.canceled
+            data:
+              $ref: '#/components/schemas/OrderData'
+
+    OrderCompletedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: order.completed
+            data:
+              $ref: '#/components/schemas/OrderData'
+
+    OrderFailedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: order.failed
+            data:
+              $ref: '#/components/schemas/OrderData'
+
+    OrderPaymentPendingEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: order.payment.pending
+            data:
+              $ref: '#/components/schemas/OrderData'
+
+    OrderChargebackEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: order.chargeback
+            data:
+              $ref: '#/components/schemas/ChargebackData'
+
+    MailingListEntryEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: mailingListEntry
+            data:
+              $ref: '#/components/schemas/MailingListEntryData'
+
+    QuoteCreatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: quote.created
+            data:
+              $ref: '#/components/schemas/QuoteData'
+
+    QuoteUpdatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: quote.updated
+            data:
+              $ref: '#/components/schemas/QuoteData'
+
+    ReturnCreatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: return.created
+            data:
+              $ref: '#/components/schemas/ReturnData'
+
+    PayoutEntryCreatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: payoutEntry.created
+            data:
+              $ref: '#/components/schemas/PayoutEntryData'
+
+    FulfillmentFailedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: fulfillment.failed
+            data:
+              $ref: '#/components/schemas/FulfillmentFailureData'
+
+    SubscriptionActivatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.activated
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionCanceledEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.canceled
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionChargeCompletedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.charge.completed
+            data:
+              $ref: '#/components/schemas/SubscriptionChargeData'
+
+    SubscriptionChargeFailedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.charge.failed
+            data:
+              $ref: '#/components/schemas/SubscriptionChargeData'
+
+    SubscriptionDeactivatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.deactivated
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionPaymentOverdueEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.payment.overdue
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionPaymentReminderEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.payment.reminder
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionTrialReminderEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.trial.reminder
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionUncanceledEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.uncanceled
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    SubscriptionUpdatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventBase'
+        - type: object
+          properties:
+            type:
+              const: subscription.updated
+            data:
+              $ref: '#/components/schemas/SubscriptionData'
+
+    WebhookEnvelopeAccountCreated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountCreatedEvent'
+
+    WebhookEnvelopeAccountUpdated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountUpdatedEvent'
+
+    WebhookEnvelopeOrderApprovalPending:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderApprovalPendingEvent'
+
+    WebhookEnvelopeOrderCanceled:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderCanceledEvent'
+
+    WebhookEnvelopeOrderCompleted:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderCompletedEvent'
+
+    WebhookEnvelopeOrderFailed:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderFailedEvent'
+
+    WebhookEnvelopeOrderPaymentPending:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderPaymentPendingEvent'
+
+    WebhookEnvelopeOrderChargeback:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderChargebackEvent'
+
+    WebhookEnvelopeMailingListEntry:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/MailingListEntryEvent'
+
+    WebhookEnvelopeQuoteCreated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/QuoteCreatedEvent'
+
+    WebhookEnvelopeQuoteUpdated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/QuoteUpdatedEvent'
+
+    WebhookEnvelopeReturnCreated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReturnCreatedEvent'
+
+    WebhookEnvelopePayoutEntryCreated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/PayoutEntryCreatedEvent'
+
+    WebhookEnvelopeFulfillmentFailed:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/FulfillmentFailedEvent'
+
+    WebhookEnvelopeSubscriptionActivated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionActivatedEvent'
+
+    WebhookEnvelopeSubscriptionCanceled:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionCanceledEvent'
+
+    WebhookEnvelopeSubscriptionChargeCompleted:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionChargeCompletedEvent'
+
+    WebhookEnvelopeSubscriptionChargeFailed:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionChargeFailedEvent'
+
+    WebhookEnvelopeSubscriptionDeactivated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionDeactivatedEvent'
+
+    WebhookEnvelopeSubscriptionPaymentOverdue:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionPaymentOverdueEvent'
+
+    WebhookEnvelopeSubscriptionPaymentReminder:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionPaymentReminderEvent'
+
+    WebhookEnvelopeSubscriptionTrialReminder:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionTrialReminderEvent'
+
+    WebhookEnvelopeSubscriptionUncanceled:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionUncanceledEvent'
+
+    WebhookEnvelopeSubscriptionUpdated:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionUpdatedEvent'
+
+    AccountData:
+      type: object
+      description: >-
+        Customer account payload. Includes the FastSpring account id and
+        nested contact details (name, email, company, phone), address,
+        language, country, and an account-management URL. Refer to the
+        FastSpring account.created / account.updated documentation for
+        the authoritative field list.
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+          description: FastSpring account id.
+        account:
+          type: string
+          description: Account reference identifier.
+        contact:
+          type: object
+          additionalProperties: true
+          description: Buyer contact details (first, last, email, company, phone, subscribed).
+        address:
+          type: object
+          additionalProperties: true
+          description: Postal address (region, city, regionCode, postalCode, country, display).
+        language:
+          type: string
+        country:
+          type: string
+        lookup:
+          type: object
+          additionalProperties: true
+          description: Lookup keys (e.g. custom, global).
+        url:
+          type: string
+          format: uri
+
+    OrderData:
+      type: object
+      description: >-
+        Order payload. Spans identifiers (order, id, reference,
+        buyerReference), order configuration (language, live, currency,
+        payoutCurrency, quote, invoiceUrl, siteId,
+        acquisitionTransactionType), pricing (total, tax, subtotal,
+        discount with display + payout currency variants), payment
+        details (billDescriptor, payment.type, cardEnding, creditcard
+        brand, bank, variant), account + customer contact and address,
+        recipients, items (with fulfillments, withholdings, proratedItem),
+        and internal notes. See the FastSpring docs for the authoritative
+        field list per order event.
+      additionalProperties: true
+      properties:
+        order:
+          type: string
+        id:
+          type: string
+        reference:
+          type: string
+        buyerReference:
+          type: string
+        ipAddress:
+          type: string
+        completed:
+          type: boolean
+        changed:
+          type: integer
+          format: int64
+        changedInSeconds:
+          type: integer
+          format: int64
+        language:
+          type: string
+        live:
+          type: boolean
+        currency:
+          type: string
+        payoutCurrency:
+          type: string
+        quote:
+          type: string
+        invoiceUrl:
+          type: string
+          format: uri
+        siteId:
+          type: string
+        acquisitionTransactionType:
+          type: string
+        total:
+          type: number
+        totalDisplay:
+          type: string
+        totalInPayoutCurrency:
+          type: number
+        totalInPayoutCurrencyDisplay:
+          type: string
+        tax:
+          type: number
+        subtotal:
+          type: number
+        discount:
+          type: number
+        discountWithTax:
+          type: number
+        billDescriptor:
+          type: string
+        payment:
+          type: object
+          additionalProperties: true
+        account:
+          $ref: '#/components/schemas/AccountData'
+        customer:
+          type: object
+          additionalProperties: true
+        address:
+          type: object
+          additionalProperties: true
+        recipients:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        notes:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        tags:
+          type: object
+          additionalProperties: true
+
+    ChargebackData:
+      type: object
+      description: >-
+        Chargeback payload accompanying order.chargeback events. Includes
+        the originating order reference and dispute metadata. Refer to
+        the FastSpring chargeback documentation for the authoritative
+        field list.
+      additionalProperties: true
+      properties:
+        order:
+          type: string
+        reference:
+          type: string
+        amount:
+          type: number
+        amountDisplay:
+          type: string
+        currency:
+          type: string
+
+    MailingListEntryData:
+      type: object
+      description: >-
+        Mailing-list entry payload (abandoned-cart / remarketing capture).
+        Includes the captured buyer contact details and any associated
+        cart context. Refer to the FastSpring mailingListEntry webhook
+        documentation for the authoritative field list.
+      additionalProperties: true
+      properties:
+        email:
+          type: string
+          format: email
+        first:
+          type: string
+        last:
+          type: string
+        company:
+          type: string
+        language:
+          type: string
+        country:
+          type: string
+        subscribed:
+          type: boolean
+
+    QuoteData:
+      type: object
+      description: >-
+        Quote payload. Includes quote id, status, customer/account
+        references, line items, totals, valid-through dates, and the
+        buyer-facing quote URL. Refer to the FastSpring quote.created /
+        quote.updated documentation for the authoritative field list.
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        quote:
+          type: string
+        status:
+          type: string
+        account:
+          type: string
+        url:
+          type: string
+          format: uri
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+
+    ReturnData:
+      type: object
+      description: >-
+        Return / refund payload. Includes return id, the originating
+        order, refunded amount and currency variants, reason, and
+        per-item refund detail. Refer to the FastSpring return.created
+        documentation for the authoritative field list.
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        order:
+          type: string
+        reference:
+          type: string
+        reason:
+          type: string
+        currency:
+          type: string
+        total:
+          type: number
+        totalDisplay:
+          type: string
+        totalInPayoutCurrency:
+          type: number
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+
+    PayoutEntryData:
+      type: object
+      description: >-
+        Payout-entry payload. Represents an order or return entry queued
+        for payout processing. Refer to the FastSpring payoutEntry.created
+        documentation for the authoritative field list.
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        order:
+          type: string
+        type:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: number
+
+    FulfillmentFailureData:
+      type: object
+      description: >-
+        Fulfillment failure payload. Identifies the order, item, and
+        failed fulfillment action (license, file, script) plus an error
+        description. Refer to the FastSpring fulfillment.failed
+        documentation for the authoritative field list.
+      additionalProperties: true
+      properties:
+        order:
+          type: string
+        item:
+          type: string
+        fulfillment:
+          type: string
+        error:
+          type: string
+
+    SubscriptionData:
+      type: object
+      description: >-
+        Subscription payload. Includes subscription id, active flag, and
+        state (active, overdue, deactivated, trial, canceled); account
+        and contact details; full product object; pricing (base, display,
+        subtotal with setup, payout-currency variants, add-ons); billing
+        schedule (begin, next, end, intervals, periods); dunning
+        notification settings; and a fulfillments array for non-rebill
+        deliverables. Refer to the per-subscription event docs for the
+        authoritative field list.
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        subscription:
+          type: string
+        active:
+          type: boolean
+        state:
+          type: string
+          enum:
+            - active
+            - overdue
+            - deactivated
+            - trial
+            - canceled
+        changed:
+          type: integer
+          format: int64
+        live:
+          type: boolean
+        currency:
+          type: string
+        account:
+          $ref: '#/components/schemas/AccountData'
+        product:
+          type: object
+          additionalProperties: true
+        price:
+          type: number
+        priceDisplay:
+          type: string
+        subtotal:
+          type: number
+        priceInPayoutCurrency:
+          type: number
+        begin:
+          type: integer
+          format: int64
+        next:
+          type: integer
+          format: int64
+        end:
+          type: integer
+          format: int64
+        intervalUnit:
+          type: string
+        intervalLength:
+          type: integer
+        periods:
+          type: integer
+        addons:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        notifications:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        fulfillments:
+          type: object
+          additionalProperties: true
+        tags:
+          type: object
+          additionalProperties: true
+
+    SubscriptionChargeData:
+      type: object
+      description: >-
+        Subscription charge payload. Wraps the subscription identity plus
+        a nested order representing the charge attempt (success or
+        failure). Refer to the FastSpring subscription.charge.completed
+        and subscription.charge.failed documentation for the
+        authoritative field list.
+      additionalProperties: true
+      properties:
+        subscription:
+          $ref: '#/components/schemas/SubscriptionData'
+        order:
+          $ref: '#/components/schemas/OrderData'
+        reason:
+          type: string
+          description: Failure reason when present (charge.failed).

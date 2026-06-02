@@ -21,7 +21,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
   - aid: fastspring:commerce-api
@@ -51,6 +51,10 @@ apis:
         url: https://developer.fastspring.com/reference/webhooks
       - type: Message Security
         url: https://developer.fastspring.com/reference/message-security
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/openapi/fastspring-openapi.yml
+      - type: AsyncAPI
+        url: https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
 
 common:
   - type: GitHubOrganization
