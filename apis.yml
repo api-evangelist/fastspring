@@ -9,7 +9,7 @@ description: >-
   Authentication using credentials issued from the FastSpring App Dashboard
   and with HMAC SHA-256 signing available for webhook payload verification.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Ecommerce
   - Merchant of Record
