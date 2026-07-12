@@ -57,6 +57,12 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
 
 common:
+  - type: TrustCenter
+    url: security/fastspring-trust-center.yml
+  - type: DomainSecurity
+    url: security/fastspring-domain-security.yml
+  - type: Authentication
+    url: authentication/fastspring-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/FastSpring
   - type: LinkedIn
@@ -75,6 +81,8 @@ common:
     url: https://fastspring.com/support
   - type: LlmsText
     url: https://developer.fastspring.com/llms.txt
+  - url: https://fastspring.com/blog/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
