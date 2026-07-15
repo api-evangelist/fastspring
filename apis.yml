@@ -57,6 +57,8 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/fastspring-agentic-access.yml
   - type: TrustCenter
     url: security/fastspring-trust-center.yml
   - type: DomainSecurity
