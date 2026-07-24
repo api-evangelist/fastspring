@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: FastSpring Accounts Orders API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+- url: https://api.fastspring.com
+  description: FastSpring production API
+security:
+- BasicAuth: []
+tags:
+- name: Orders
+paths:
+  /orders:
+    get:
+      tags:
+      - Orders
+      summary: List orders
+      responses:
+        '200':
+          description: Orders
+  /orders/{order_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      tags:
+      - Orders
+      summary: Retrieve an order
+      responses:
+        '200':
+          description: Order
+    patch:
+      tags:
+      - Orders
+      summary: Update order tags and attributes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated order
+components:
+  parameters:
+    OrderId:
+      in: path
+      name: order_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard

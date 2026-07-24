@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: FastSpring Accounts Events API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+- url: https://api.fastspring.com
+  description: FastSpring production API
+security:
+- BasicAuth: []
+tags:
+- name: Events
+paths:
+  /events:
+    get:
+      tags:
+      - Events
+      summary: List processed / unprocessed webhook events
+      responses:
+        '200':
+          description: Events
+  /events/{event_id}:
+    parameters:
+    - in: path
+      name: event_id
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Events
+      summary: Mark an event as processed
+      responses:
+        '200':
+          description: Updated
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard

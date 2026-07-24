@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: FastSpring Accounts Sessions API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+- url: https://api.fastspring.com
+  description: FastSpring production API
+security:
+- BasicAuth: []
+tags:
+- name: Sessions
+paths:
+  /sessions:
+    post:
+      tags:
+      - Sessions
+      summary: Create a checkout session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Created session
+  /sessions/{session_id}:
+    parameters:
+    - $ref: '#/components/parameters/SessionId'
+    get:
+      tags:
+      - Sessions
+      summary: Retrieve a session
+      responses:
+        '200':
+          description: Session
+    patch:
+      tags:
+      - Sessions
+      summary: Update a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated session
+  /sessions/{session_id}/items:
+    parameters:
+    - $ref: '#/components/parameters/SessionId'
+    post:
+      tags:
+      - Sessions
+      summary: Add items to a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated items
+  /sessions/{session_id}/items/{item_id}:
+    parameters:
+    - $ref: '#/components/parameters/SessionId'
+    - in: path
+      name: item_id
+      required: true
+      schema:
+        type: string
+    patch:
+      tags:
+      - Sessions
+      summary: Update a session item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated item
+    delete:
+      tags:
+      - Sessions
+      summary: Delete a session item
+      responses:
+        '200':
+          description: Deleted
+  /sessions/{session_id}/payment-methods:
+    parameters:
+    - $ref: '#/components/parameters/SessionId'
+    get:
+      tags:
+      - Sessions
+      summary: Retrieve available payment methods for a session
+      responses:
+        '200':
+          description: Payment methods
+components:
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard

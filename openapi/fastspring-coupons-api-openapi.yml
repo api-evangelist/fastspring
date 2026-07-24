@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: FastSpring Accounts Coupons API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+- url: https://api.fastspring.com
+  description: FastSpring production API
+security:
+- BasicAuth: []
+tags:
+- name: Coupons
+paths:
+  /coupons:
+    get:
+      tags:
+      - Coupons
+      summary: List coupon identifiers
+      responses:
+        '200':
+          description: Coupons
+  /coupons/{coupon_id}:
+    parameters:
+    - $ref: '#/components/parameters/CouponId'
+    get:
+      tags:
+      - Coupons
+      summary: Retrieve a coupon
+      responses:
+        '200':
+          description: Coupon
+    post:
+      tags:
+      - Coupons
+      summary: Create or update a coupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Coupon
+    delete:
+      tags:
+      - Coupons
+      summary: Delete a coupon
+      responses:
+        '200':
+          description: Deleted
+  /coupons/{coupon_id}/codes:
+    parameters:
+    - $ref: '#/components/parameters/CouponId'
+    get:
+      tags:
+      - Coupons
+      summary: List codes for a coupon
+      responses:
+        '200':
+          description: Codes
+    post:
+      tags:
+      - Coupons
+      summary: Add codes to a coupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated codes
+    delete:
+      tags:
+      - Coupons
+      summary: Delete all codes for a coupon
+      responses:
+        '200':
+          description: Deleted
+components:
+  parameters:
+    CouponId:
+      in: path
+      name: coupon_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard

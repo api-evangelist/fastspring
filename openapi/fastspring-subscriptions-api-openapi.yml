@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: FastSpring Accounts Subscriptions API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+- url: https://api.fastspring.com
+  description: FastSpring production API
+security:
+- BasicAuth: []
+tags:
+- name: Subscriptions
+paths:
+  /subscriptions:
+    get:
+      tags:
+      - Subscriptions
+      summary: List subscription identifiers
+      responses:
+        '200':
+          description: Subscriptions
+  /subscriptions/{subscription_id}:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieve a subscription
+      responses:
+        '200':
+          description: Subscription
+    patch:
+      tags:
+      - Subscriptions
+      summary: Update a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated subscription
+  /subscriptions/{subscription_id}/entries:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags:
+      - Subscriptions
+      summary: List subscription transactions
+      responses:
+        '200':
+          description: Entries
+  /subscriptions/{subscription_id}/pause:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags:
+      - Subscriptions
+      summary: Pause a subscription
+      responses:
+        '200':
+          description: Paused
+  /subscriptions/{subscription_id}/resume:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags:
+      - Subscriptions
+      summary: Resume a paused subscription
+      responses:
+        '200':
+          description: Resumed
+  /subscriptions/{subscription_id}/cancel:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags:
+      - Subscriptions
+      summary: Cancel a subscription
+      responses:
+        '200':
+          description: Canceled
+  /subscriptions/{subscription_id}/convert:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags:
+      - Subscriptions
+      summary: Convert trial to paid
+      responses:
+        '200':
+          description: Converted
+components:
+  parameters:
+    SubscriptionId:
+      in: path
+      name: subscription_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard

@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: FastSpring Accounts Products API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  version: 1.0.0
+  contact:
+    name: FastSpring Developer Hub
+    url: https://developer.fastspring.com
+servers:
+- url: https://api.fastspring.com
+  description: FastSpring production API
+security:
+- BasicAuth: []
+tags:
+- name: Products
+paths:
+  /products:
+    get:
+      tags:
+      - Products
+      summary: List product path identifiers
+      responses:
+        '200':
+          description: Products
+    post:
+      tags:
+      - Products
+      summary: Create or update products (batch up to 300)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Result
+  /products/{product_path}:
+    parameters:
+    - $ref: '#/components/parameters/ProductPath'
+    get:
+      tags:
+      - Products
+      summary: Retrieve a product
+      responses:
+        '200':
+          description: Product
+    delete:
+      tags:
+      - Products
+      summary: Delete a product
+      responses:
+        '200':
+          description: Deleted
+  /products/{product_path}/prices:
+    parameters:
+    - $ref: '#/components/parameters/ProductPath'
+    get:
+      tags:
+      - Products
+      summary: Retrieve product prices
+      responses:
+        '200':
+          description: Prices
+components:
+  parameters:
+    ProductPath:
+      in: path
+      name: product_path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with credentials from FastSpring App Dashboard
