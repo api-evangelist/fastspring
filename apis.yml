@@ -9,7 +9,19 @@ description: >-
   Authentication using credentials issued from the FastSpring App Dashboard
   and with HMAC SHA-256 signing available for webhook payload verification.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fastspring.png
 tags:
   - Ecommerce
   - Merchant of Record
@@ -24,38 +36,282 @@ created: '2026-05-11'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-  - aid: fastspring:commerce-api
-    name: FastSpring API
-    description: >-
-      REST API for FastSpring's ecommerce platform covering orders,
-      subscriptions, products, coupons, customers, sessions, returns, and
-      webhooks. Authenticated using HTTP Basic credentials issued in the
-      FastSpring App Dashboard under Integrations > API Credentials, with
-      HMAC SHA-256 signing available to verify webhook payloads.
-    humanURL: https://developer.fastspring.com
-    baseURL: https://api.fastspring.com
-    tags:
-      - Ecommerce
-      - Subscription Billing
-      - Payments
-      - Orders
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://developer.fastspring.com/reference
-      - type: GettingStarted
-        url: https://developer.fastspring.com/reference/getting-started-with-your-api
-      - type: Authentication
-        url: https://developer.fastspring.com/reference/authentication
-      - type: Webhooks
-        url: https://developer.fastspring.com/reference/webhooks
-      - type: Message Security
-        url: https://developer.fastspring.com/reference/message-security
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/openapi/fastspring-openapi.yml
-      - type: AsyncAPI
-        url: https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
-
+- aid: fastspring:fastspring-accounts-api
+  name: FastSpring Accounts API
+  description: The Accounts API from FastSpring — 3 operation(s) for accounts.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-coupons-api
+  name: FastSpring Coupons API
+  description: The Coupons API from FastSpring — 3 operation(s) for coupons.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Coupons
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-coupons-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-data-api
+  name: FastSpring Data API
+  description: The Data API from FastSpring — 4 operation(s) for data.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Data
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-data-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-events-api
+  name: FastSpring Events API
+  description: The Events API from FastSpring — 2 operation(s) for events.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-events-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-invoices-api
+  name: FastSpring Invoices API
+  description: The Invoices API from FastSpring — 2 operation(s) for invoices.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-orders-api
+  name: FastSpring Orders API
+  description: The Orders API from FastSpring — 2 operation(s) for orders.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-products-api
+  name: FastSpring Products API
+  description: The Products API from FastSpring — 3 operation(s) for products.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-products-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-quotes-api
+  name: FastSpring Quotes API
+  description: The Quotes API from FastSpring — 3 operation(s) for quotes.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-quotes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-returns-api
+  name: FastSpring Returns API
+  description: The Returns API from FastSpring — 2 operation(s) for returns.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Returns
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-returns-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-sessions-api
+  name: FastSpring Sessions API
+  description: The Sessions API from FastSpring — 5 operation(s) for sessions.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-subscriptions-api
+  name: FastSpring Subscriptions API
+  description: The Subscriptions API from FastSpring — 7 operation(s) for subscriptions.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
+- aid: fastspring:fastspring-webhooks-api
+  name: FastSpring Webhooks API
+  description: The Webhooks API from FastSpring — 1 operation(s) for webhooks.
+  humanURL: https://developer.fastspring.com
+  baseURL: https://api.fastspring.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/fastspring-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.fastspring.com/reference
+  - type: GettingStarted
+    url: https://developer.fastspring.com/reference/getting-started-with-your-api
+  - type: Authentication
+    url: https://developer.fastspring.com/reference/authentication
+  - type: Webhooks
+    url: https://developer.fastspring.com/reference/webhooks
+  - type: Message Security
+    url: https://developer.fastspring.com/reference/message-security
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/fastspring-agentic-access.yml
