@@ -1,0 +1,36 @@
+{
+  "provider": "fastspring",
+  "sources": [
+    "fastspring-accounts-api-openapi.yml",
+    "fastspring-coupons-api-openapi.yml",
+    "fastspring-data-api-openapi.yml",
+    "fastspring-events-api-openapi.yml",
+    "fastspring-invoices-api-openapi.yml",
+    "fastspring-orders-api-openapi.yml",
+    "fastspring-products-api-openapi.yml",
+    "fastspring-quotes-api-openapi.yml",
+    "fastspring-returns-api-openapi.yml",
+    "fastspring-sessions-api-openapi.yml",
+    "fastspring-subscriptions-api-openapi.yml",
+    "fastspring-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "fastspring-accounts-api-openapi.yml",
+    "fastspring-coupons-api-openapi.yml",
+    "fastspring-data-api-openapi.yml",
+    "fastspring-events-api-openapi.yml",
+    "fastspring-invoices-api-openapi.yml",
+    "fastspring-orders-api-openapi.yml",
+    "fastspring-products-api-openapi.yml",
+    "fastspring-quotes-api-openapi.yml",
+    "fastspring-returns-api-openapi.yml",
+    "fastspring-sessions-api-openapi.yml",
+    "fastspring-subscriptions-api-openapi.yml",
+    "fastspring-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
