@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FastSpring Accounts Products API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List product path identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fastspring.com/products"
+          },
+          "docs": "List product path identifiers"
+        },
+        {
+          "info": {
+            "name": "Create or update products (batch up to 300)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fastspring.com/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update products (batch up to 300)"
+        },
+        {
+          "info": {
+            "name": "Retrieve a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fastspring.com/products/:product_path",
+            "params": [
+              {
+                "name": "product_path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a product"
+        },
+        {
+          "info": {
+            "name": "Delete a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fastspring.com/products/:product_path",
+            "params": [
+              {
+                "name": "product_path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a product"
+        },
+        {
+          "info": {
+            "name": "Retrieve product prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fastspring.com/products/:product_path/prices",
+            "params": [
+              {
+                "name": "product_path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve product prices"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

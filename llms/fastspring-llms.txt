@@ -1,0 +1,350 @@
+# FastSpring Developer Docs Documentation
+
+> Documentation for FastSpring developers. View the FastSpring API reference; learn about Store Builder Library, FastSpring's JavaScript library; or FastSpring's Webhook functionality.
+
+## Guides
+- [Welcome to FastSpring](https://developer.fastspring.com/docs/welcome-to-fastspring.md): Understand the Merchant of Record partnership and start your onboarding journey.
+- [Activate your store](https://developer.fastspring.com/docs/activate-your-store.md): Complete the requirements to move your store from Test mode to Live mode.
+- [Choose a checkout experience](https://developer.fastspring.com/docs/choose-a-checkout-experience.md): Compare web, popup, and embedded checkout options to find the right fit for your website.
+- [Support and resources](https://developer.fastspring.com/docs/support-and-resources.md): Identify the right support channel, view response targets, and contact our team.
+- [Find answers with Ask AI](https://developer.fastspring.com/docs/find-answers-with-ask-ai.md): Use our interactive assistant to search the documentation, ask follow-up questions, and analyze specific guides with your preferred AI tools.
+- [Payout Portal overview](https://developer.fastspring.com/docs/payout-portal-overview.md): Manage your banking details, view payment schedules, and access financial reports.
+- [Set up your payout account](https://developer.fastspring.com/docs/set-up-your-payout-account.md): Initialize your Payouts Portal, add transfer methods, and configure automated withdrawals.
+- [Receive payouts](https://developer.fastspring.com/docs/receive-payouts.md): Understand payout schedules, settlement delays, and how your net earnings are calculated.
+- [Split partner accounts](https://developer.fastspring.com/docs/split-partner-accounts.md): Automatically route a percentage of sales or revenue to third-party partners, co-developers, or affiliates.
+- [Transaction reports and statements](https://developer.fastspring.com/docs/transaction-reports-and-statements.md): Download official PDF statements, view real-time transaction logs, and export detailed financial records.
+- [Migrate from Classic to Contextual Commerce](https://developer.fastspring.com/docs/classic-commerce-upgrade-overview.md)
+- [Configure store settings](https://developer.fastspring.com/docs/configure-store-settings.md): Define all global configurations for your store, including contact information, localization, invoicing, and payment options.
+- [Manage payment methods](https://developer.fastspring.com/docs/manage-payment-methods.md): Enable, disable, and configure payment methods for your store. Manage which options appear at checkout, set transaction limits, and configure features like One Click Pay and dunning intervals.
+- [Request purchase limits](https://developer.fastspring.com/docs/request-purchase-limits.md): Cap how many units a single buyer can purchase within a set time window, enforced in real time at checkout.
+- [Manage roles and permissions](https://developer.fastspring.com/docs/manage-roles-and-permissions.md): Define access, assign user roles, and understand company and store scope.
+- [Set up seller notifications](https://developer.fastspring.com/docs/set-up-seller-notifications.md): Define custom email alerts to notify yourself and team members when specific store or customer events occur.
+- [What is a reseller partner?](https://developer.fastspring.com/docs/what-is-a-reseller-partner.md): Define the reseller relationship and understand the benefits for both you and your partners.
+- [Manage reseller partners](https://developer.fastspring.com/docs/manage-reseller-partners.md): View and edit existing partner details, adjust credit limits, track order activity, and manage product availability.
+- [Configure reseller partner store](https://developer.fastspring.com/docs/configure-reseller-partner-store.md): Request the reseller partner feature, access your store, and perform initial configuration of products, pricing, and reporting.
+- [Reseller ordering and fulfillment](https://developer.fastspring.com/docs/reseller-ordering-and-fulfillment.md): Learn how to create orders from the seller, manage payment options (including credit limits), and distribute licenses to your end customers.
+- [Set a product tax category](https://developer.fastspring.com/docs/set-a-product-tax-category.md): Use the product questionnaire to assign the correct tax code to your product for compliance, or submit a custom code for review.
+- [Tax category selection helper](https://developer.fastspring.com/docs/tax-category-selection-helper.md): Choose the appropriate tax category for your product using detailed descriptions and corresponding tax codes.
+- [Understand VAT and sales tax](https://developer.fastspring.com/docs/about-vat-and-sales-tax.md): Tax jurisdictions, rates, and ID numbers for VAT, GST, and sales tax collection worldwide.
+- [Tax information reporting: Form W-8 and W-9](https://developer.fastspring.com/docs/tax-information-reporting.md): The IRS requires FastSpring to collect tax information from sellers earning revenue on our platform. All sellers must complete and update a W-9 or W-8 form in the app.
+- [Tax information reporting: Form 1099-K](https://developer.fastspring.com/docs/tax-information-reporting-form-1099-k.md): A guide for US sellers regarding the gross proceeds reporting requirements, Form 1099-K, and answers to frequently asked questions.
+- [US tax withholding for downloadable subscription software](https://developer.fastspring.com/docs/us-tax-withholding-for-downloadable-subscription-software.md): Criteria, conditions, and treaty rates for foreign sellers.
+- [Currencies and conversions](https://developer.fastspring.com/docs/currencies-and-conversions.md): Understand how FastSpring displays, converts, and manages currencies for global buyers.
+- [Default currencies and languages](https://developer.fastspring.com/docs/default-currencies-and-languages.md): Default mappings that determine the currency and language buyers see during checkout.
+- [Gross and net pricing modes](https://developer.fastspring.com/docs/gross-pricing-mode-and-net-pricing-mode.md): Choose whether taxes are included in your displayed price or added at checkout.
+- [Payment hierarchy](https://developer.fastspring.com/docs/payment-method-hierarchy-overview.md): Learn how FastSpring orders and pre-selects the best payment option in your checkout based on device and region.
+- [Declined and canceled payments](https://developer.fastspring.com/docs/declined-and-canceled-payments.md): Understand why transactions fail, how to interpret decline codes, and what error messages your customers see.
+- [Configure invoice-based purchases](https://developer.fastspring.com/docs/configure-invoice-based-purchases.md): Enable B2B customers to generate Purchase Orders at checkout, and manage order flows, approvals, and payment terms.
+- [Configure gift purchases](https://developer.fastspring.com/docs/configure-gift-purchases.md): Enable customers to buy products for others using separate recipient details and a personalized message.
+- [Payment methods accepted by FastSpring](https://developer.fastspring.com/docs/payment-methods-accepted-by-fastspring.md): See all payment methods FastSpring supports, including cards, bank transfers, digital wallets, checks, and local cards.
+- [ACH Direct Debit](https://developer.fastspring.com/docs/ach-direct-debit.md): A secure bank debit payment method for US buyers, supporting both one-time purchases and recurring subscriptions.
+- [Amazon Pay](https://developer.fastspring.com/docs/amazon-pay.md): FastSpring supports Amazon Pay as a payment method in all countries where Amazon Pay is available.
+- [Apple Pay](https://developer.fastspring.com/docs/apple-pay.md): FastSpring supports Apple Pay as a payment method in all countries where Apple Pay is available.
+- [Brazilian Card](https://developer.fastspring.com/docs/brazilian-card.md): FastSpring supports local credit cards, including Elo and Hipercard, as a payment method in Brazil.
+- [Cash App Pay](https://developer.fastspring.com/docs/cash-app-pay.md): FastSpring supports Cash App as a payment method for buyers in the US.
+- [Google Pay](https://developer.fastspring.com/docs/google-pay.md): FastSpring supports Google Pay as a payment method in all countries where Google Pay is available.
+- [Kakao Pay](https://developer.fastspring.com/docs/kakao-pay.md): FastSpring supports Kakao Pay as a South Korean payment method.
+- [Klarna “Pay Now”](https://developer.fastspring.com/docs/klarna-pay-now.md): FastSpring supports Klarna "Pay Now" as a payment method.
+- [Mercado Pago](https://developer.fastspring.com/docs/mercado-pago.md): FastSpring supports Mercado Pago as a payment method in Brazil, Mexico, and Chile.
+- [Pix](https://developer.fastspring.com/docs/pix.md): FastSpring supports Pix for one-time purchases and manual subscription renewals in Brazil.
+- [Pix Automatico](https://developer.fastspring.com/docs/pix-automatico.md): FastSpring supports Pix Automatico for fully automated subscription renewals in Brazil.
+- [PromptPay](https://developer.fastspring.com/docs/promptpay.md): FastSpring supports PromptPay as a payment method from Thailand.
+- [Single Euro Payments Area (SEPA)](https://developer.fastspring.com/docs/sepa.md): A secure bank debit payment method for European buyers, supporting both one-time purchases and recurring subscriptions.
+- [Toss Pay](https://developer.fastspring.com/docs/toss-pay.md): FastSpring supports Toss Pay as a South Korean payment method.
+- [UPI](https://developer.fastspring.com/docs/unified-payments-interface-upi.md): FastSpring supports UPI for one-time purchases and manual subscription renewals in India.
+- [UPI AutoPay](https://developer.fastspring.com/docs/unified-payments-interface-upi-autopay.md): FastSpring supports UPI AutoPay for fully automated subscription renewals in India.
+- [Venmo](https://developer.fastspring.com/docs/venmo.md): FastSpring supports Venmo as a payment method for buyers in the US.
+- [WeChat Pay](https://developer.fastspring.com/docs/wechat-pay.md): FastSpring supports WeChat Pay as a payment method in China.
+- [Configure security settings](https://developer.fastspring.com/docs/configure-security-settings.md): Protect your account with Two-Factor Authentication, SSO, and IP Allowlisting.
+- [Terms, conditions, and EULAs](https://developer.fastspring.com/docs/about-terms-conditions-and-eulas.md): Understand the Merchant of Record relationship and how it affects legal terms.
+- [PSD2 and SCA compliance](https://developer.fastspring.com/docs/psd2-and-sca-compliance.md): Understand European payment regulations and how FastSpring handles compliance.
+- [GDPR compliance](https://developer.fastspring.com/docs/about-gdpr-compliance.md): Understand the General Data Protection Regulation and FastSpring's compliance status.
+- [Machine-learning fraud engine](https://developer.fastspring.com/docs/machine-learning-fraud-engine.md): Leverage AI-driven risk management to protect your store.
+- [Checkouts Overview](https://developer.fastspring.com/docs/checkouts-overview.md): Learn how stores and checkouts work together and choose the right checkout type for your integration.
+- [Checkout settings](https://developer.fastspring.com/docs/checkout-settings.md): Manage online and offline checkout states, access live and test URLs, and safely copy or update your checkouts.
+- [Access checkout URLs](https://developer.fastspring.com/docs/access-checkout-urls.md): Learn how to access checkout URLs for web, popup, product, API, and SBL integrations.
+- [Currency and language settings](https://developer.fastspring.com/docs/currency-and-language-settings.md): Learn how to configure default countries, supported currencies, and available languages for your store and checkouts.
+- [Test orders](https://developer.fastspring.com/docs/test-orders.md): Safely simulate the buyer experience and confirm your checkout setup before going live.
+- [Popup checkout overview](https://developer.fastspring.com/docs/popup-checkout-overview.md): Learn how popup checkouts work and how to create, configure, and launch them on your website.
+- [Create a popup checkout](https://developer.fastspring.com/docs/create-a-popup-checkout.md): Learn how to create a popup checkout and choose a theme that fits your brand.
+- [Configure checkout experience](https://developer.fastspring.com/docs/configure-popup-checkout-experience.md): Learn how to configure your popup checkout fields, localization, promotions, and accessibility options.
+- [Style your checkout](https://developer.fastspring.com/docs/style-your-popup-checkout.md): Learn how to style your popup checkout to match your brand’s look and feel.
+- [Checkout analytics and branding](https://developer.fastspring.com/docs/popup-checkout-analytics-and-branding.md): Learn how to connect popup checkouts to analytics tools and customize how your brand appears in the PayPal payment flow.
+- [Add a shopping cart](https://developer.fastspring.com/docs/add-a-shopping-cart.md): Enable a built-in cart so buyers can review, update, and manage their order before payment.
+- [Add checkout to your site](https://developer.fastspring.com/docs/add-checkout-to-your-site.md): Learn how to whitelist domains, add products, and connect your popup checkout to your website.
+- [Redirect after checkout](https://developer.fastspring.com/docs/redirect-after-checkout.md): Learn how to redirect customers to a custom page after they complete a popup checkout.
+- [Embedded checkout overview](https://developer.fastspring.com/docs/embedded-checkout-overview.md): Learn how embedded checkouts work and how to create, configure, and launch them on your website.
+- [Create an embedded checkout](https://developer.fastspring.com/docs/create-an-embedded-checkout.md): Set up your embedded checkout and choose between Inline or Stacked layouts for the buyer experience.
+- [Configure checkout experience](https://developer.fastspring.com/docs/configure-checkout-experience.md): Learn how to configure your checkout fields, localization, promotions, and accessibility options.
+- [Style your checkout](https://developer.fastspring.com/docs/style-your-checkout.md): Learn how to style your checkout to match your brand’s look and feel.
+- [Checkout analytics and branding](https://developer.fastspring.com/docs/checkout-analytics-and-branding.md): Learn how to connect embedded checkouts to analytics tools and customize how your brand appears in the PayPal payment flow.
+- [Embed your checkout](https://developer.fastspring.com/docs/embed-your-checkout.md): Learn how to whitelist domains, add products, and embed your checkout on your website.
+- [Enhance your checkout](https://developer.fastspring.com/docs/enhance-your-checkout.md): Learn how to validate order data, adjust spinner placement, and improve post-purchase workflows.
+- [Web checkout overview](https://developer.fastspring.com/docs/web-checkout-overview.md): Set up, customize, and manage your hosted FastSpring checkout pages for a simple, secure buyer experience.
+- [Create a web checkout](https://developer.fastspring.com/docs/create-a-web-checkout.md): Learn how to create a hosted web checkout, explore its built-in pages, and copy existing checkouts.
+- [Web checkout appearance](https://developer.fastspring.com/docs/web-checkout-appearance.md): Customize how your web checkout looks across colors, fonts, headers, footers, backgrounds, buttons, and overall page styling.
+- [Web checkout behavior](https://developer.fastspring.com/docs/web-checkout-behavior.md): Control how your web checkout functions across promotions, product offers, popups, analytics tracking, PayPal branding, and checkout-level behaviors.
+- [Set up Component Checkouts](https://developer.fastspring.com/docs/set-up-component-checkouts.md): Embed secure, customizable payment components directly into your page — no redirects required.
+- [Create or copy a product](https://developer.fastspring.com/docs/create-or-copy-a-product.md): Learn how to create or copy a product.
+- [Customize a product](https://developer.fastspring.com/docs/customize-a-product.md): Learn how to customize your product.
+- [Add product options](https://developer.fastspring.com/docs/add-product-options.md): Learn how to add product options to a product, bundle, or subscription.
+- [Create product bundles](https://developer.fastspring.com/docs/create-product-bundles.md): Learn how to create a product bundle.
+- [Configure product offers](https://developer.fastspring.com/docs/configure-product-offers.md): Learn how to create and manage product offers.
+- [Create a product variation](https://developer.fastspring.com/docs/create-a-product-variation.md): Learn how to create a product variation.
+- [Manage your products](https://developer.fastspring.com/docs/manage-your-products.md): Get an at-a-glance overview of managing your FastSpring products.
+- [Limit product availability by country](https://developer.fastspring.com/docs/limit-product-availability-by-country.md): Learn how to use custom attributes to include or exclude specific countries from viewing and purchasing your items.
+- [Create a subscription](https://developer.fastspring.com/docs/create-a-subscription.md): Learn how to create a subscription.
+- [Customize a subscription](https://developer.fastspring.com/docs/customize-a-subscription.md): Learn how to customize your subscription.
+- [Set up a managed subscription](https://developer.fastspring.com/docs/set-up-a-managed-subscription.md): Learn how to configure managed billing and trigger subscription charges on demand.
+- [Set up manual renewal](https://developer.fastspring.com/docs/set-up-manual-renewal.md): Learn how to enable manual renewal subscriptions in your checkout.
+- [Set up renewal invoicing](https://developer.fastspring.com/docs/set-up-renewal-invoicing.md): Generate and process renewal invoices to update subscription renewal dates and apply proration adjustments.
+- [Configure renewal settings](https://developer.fastspring.com/docs/configure-renewal-settings.md): Learn how to configure your checkout settings for manual and automatic subscription renewals.
+- [Manage active subscriptions](https://developer.fastspring.com/docs/manage-active-subscriptions.md): Learn how to view and manage active subscriptions in your catalog.
+- [Pause a subscription](https://developer.fastspring.com/docs/pause-a-subscription-1.md): Learn how to pause a subscription and temporarily halt its billing cycle.
+- [Auto-renew into a different subscription](https://developer.fastspring.com/docs/auto-renew-into-a-different-subscription.md): Learn how to configure subscriptions to auto-renew into another product.
+- [Add subscription add-ons](https://developer.fastspring.com/docs/add-subscription-add-ons.md): Learn how to attach and configure add-on offers for a subscription.
+- [Set up trial subscriptions](https://developer.fastspring.com/docs/set-up-trial-subscriptions.md): Learn how to create and configure trial subscriptions for your products.
+- [Prevent trial hopping](https://developer.fastspring.com/docs/prevent-trial-hopping.md): Learn how to block customers from abusing multiple free trials.
+- [Configure cancellation survey](https://developer.fastspring.com/docs/configure-cancellation-survey.md): Learn how to customize the cancellation survey reasons your customers see when they cancel a subscription.
+- [Dynamic Subscription Repricing](https://developer.fastspring.com/docs/dynamic-subscription-repricing.md): Automate bulk price adjustments for active subscriptions. Learn to filter instances, apply percentage or fixed-rate updates, and audit the financial impact.
+- [Fulfillments Overview](https://developer.fastspring.com/docs/fulfillments.md)
+- [License Keys](https://developer.fastspring.com/docs/license-key-fulfillments.md)
+- [File Downloads](https://developer.fastspring.com/docs/file-downloads.md)
+- [Signed PDF](https://developer.fastspring.com/docs/signed-pdf-fulfillment.md)
+- [Extended Download Service](https://developer.fastspring.com/docs/extended-download-service-eds.md)
+- [Customer Notifications](https://developer.fastspring.com/docs/consumer-facing-emails.md)
+- [Email Template Elements](https://developer.fastspring.com/docs/template-reference.md)
+- [MIME 1.0 License Output Format](https://developer.fastspring.com/docs/mime-1-0-license-output-format.md)
+- [List of Accepted Elements in Data Fields](https://developer.fastspring.com/docs/list-of-accepted-elements-in-data-fields.md)
+- [Create and manage coupons](https://developer.fastspring.com/docs/create-and-manage-coupons.md): Create promotional discount codes for checkout — choose item-level for specific products or order-level for the entire cart.
+- [Multi-Discount Coupons](https://developer.fastspring.com/docs/multi-discount-coupons.md)
+- [Product Discounts](https://developer.fastspring.com/docs/product-discounts.md)
+- [Effective Date Flag for Discounts](https://developer.fastspring.com/docs/effective-date-flag-for-discounts.md)
+- [Checkout and orders overview](https://developer.fastspring.com/docs/checkout-and-orders-overview.md): Configure your payment experience and manage the lifecycle of your sales.
+- [1ClickPay](https://developer.fastspring.com/docs/1clickpay.md): Reduce friction and increase revenue by allowing customers to purchase with a single click.
+- [Search for orders](https://developer.fastspring.com/docs/search-for-orders.md): Locate transactions using ID, email, or payment details.
+- [Refund an order](https://developer.fastspring.com/docs/refund-an-order.md): Refund an order to resolve customer issues or correct accidental charges.
+- [Chargebacks and disputes](https://developer.fastspring.com/docs/chargebacks-and-disputes.md): Understand how FastSpring handles disputed charges and PayPal cases.
+- [Manage custom orders](https://developer.fastspring.com/docs/manage-custom-orders.md): Generate prefilled checkout links with customized pricing and products.
+- [Configure payment methods](https://developer.fastspring.com/docs/configure-payment-methods.md): Learn how to preselect, order, or hide payment options using FastSpring checkout configuration and the Store Builder Library (SBL).
+- [Customer accounts and security](https://developer.fastspring.com/docs/customer-accounts-and-security.md): Understand how FastSpring creates, secures, and manages customer data.
+- [Account management portal](https://developer.fastspring.com/docs/account-management-portal.md): Provide customers with self-service access to order history and subscription settings.
+- [Embedded payment management](https://developer.fastspring.com/docs/embedded-payment-management.md): Allow customers to manage subscription payment methods directly on your website.
+- [Pass customer information](https://developer.fastspring.com/docs/pass-customer-information.md): Reduce checkout friction and ensure data consistency by pre-filling customer details.
+- [Digital invoicing overview](https://developer.fastspring.com/docs/digital-invoicing-overview.md): Centralize your quotes, invoices, and purchase orders to connect B2B deals directly to your store sales.
+- [Digital invoicing settings](https://developer.fastspring.com/docs/digital-invoicing-settings.md): Generate custom orders and quotes for B2B clients who require negotiable terms or invoice-based payment methods.
+- [Create and send quotes](https://developer.fastspring.com/docs/create-and-send-a-quote.md): Generate trackable price quotes for B2B prospects and convert them to orders.
+- [Self-service quotes](https://developer.fastspring.com/docs/self-service-quotes.md): Allow customers to generate their own price quotes directly from the checkout page.
+- [Manage quotes and invoices](https://developer.fastspring.com/docs/manage-quotes-and-invoices.md): Track the status of your B2B offers, filter orders by source, and manage invoice details.
+- [Developer Tools](https://developer.fastspring.com/docs/integrations.md)
+- [Shipping Fee Calculator](https://developer.fastspring.com/docs/shipping-fee-calculator.md)
+- [Extensions Overview](https://developer.fastspring.com/docs/extensions-tab.md)
+- [GA4 Setup](https://developer.fastspring.com/docs/google-analytics.md)
+- [Migrating from Universal Analytics to GA4](https://developer.fastspring.com/docs/migrating-from-universal-analytics-to-ga4.md)
+- [GA4 (Classic Documentation)](https://developer.fastspring.com/docs/implementing-google-analytics-4-ga4-with-fastspring-classic-documentation-only.md)
+- [Google Measurement Protocol](https://developer.fastspring.com/docs/google-measurement-protocol.md)
+- [Google Tag Manager](https://developer.fastspring.com/docs/google-tag-manager.md)
+- [FunnelFox](https://developer.fastspring.com/docs/funnelfox.md): Connect FunnelFox to your FastSpring account to build conversion funnels with popup and embedded checkouts, subscription management, and recurring billing.
+- [HubSpot](https://developer.fastspring.com/docs/hubspot.md): Connect your HubSpot instance to your FastSpring store.
+- [Mailchimp](https://developer.fastspring.com/docs/mailchimp.md)
+- [Zapier](https://developer.fastspring.com/docs/managing-webhooks-using-zapier.md)
+- [aMember](https://developer.fastspring.com/docs/amember-integration.md)
+- [Easy Digital Downloads (EDD) Plugin](https://developer.fastspring.com/docs/integrating-easy-digital-downloads.md)
+- [WordPress](https://developer.fastspring.com/docs/fastspring-wordpress-plugin.md)
+- [License Management](https://developer.fastspring.com/docs/license-management-integrations.md)
+- [Quick License Manager (QLM)](https://developer.fastspring.com/docs/integrating-quick-license-manager-qlm-contextual.md)
+- [LimeLM](https://developer.fastspring.com/docs/integrating-limelm.md)
+- [Nalpeiron](https://developer.fastspring.com/docs/integrating-nalpeiron.md)
+- [10Duke](https://developer.fastspring.com/docs/10duke.md)
+- [SoftwareKey SOLO Server](https://developer.fastspring.com/docs/softwarekey-solo-server.md)
+- [Cryptlex](https://developer.fastspring.com/docs/cryptlex.md): Connect your FastSpring store with Cryptlex
+- [Unity/UGS and FastSpring checkout integration (iOS & Android) with Steer Safe™](https://developer.fastspring.com/docs/fastspring-checkout-integration-with-steer-safe.md): Build a secure in-game purchase flow using FastSpring, Unity UGS, and deep link steering to handle checkout, webhooks, and post-purchase updates.
+- [React Native FastSpring integration (iOS & Android) with Steer Safe™](https://developer.fastspring.com/docs/react-native-fastspring-integration.md): Build a secure subscription flow using FastSpring checkout, backend authentication, deep link returns, and Steer Safe browser steering.
+- [Nexus and FastSpring embedded checkout integration](https://developer.fastspring.com/docs/nexus-fastspring-embedded-checkout-integration.md): Connect Nexus creator codes to FastSpring's embedded checkout for automatic discount and attribution handling.
+- [FastSpring Affiliate Solution](https://developer.fastspring.com/docs/fastspring-affiliate-solution.md)
+- [Home](https://developer.fastspring.com/docs/home-dashboard-overview.md): Understand the key sales metrics and recent activity for orders and subscriptions on your Home dashboard.
+- [Revenue dashboard](https://developer.fastspring.com/docs/revenue-dashboard.md): Monitor real-time sales, refunds, and product trends.
+- [Recognition dashboard](https://developer.fastspring.com/docs/recognition-dashboard.md): Track recognized revenue for accrual-based accounting.
+- [Chargeback dashboard](https://developer.fastspring.com/docs/chargeback-dashboard.md): Monitor fraud levels and manage payment disputes.
+- [Checkout dashboard](https://developer.fastspring.com/docs/checkout-dashboard.md): Monitor buyer behavior and optimize conversion rates.
+- [Subscription dashboard](https://developer.fastspring.com/docs/subscription-dashboard.md): Track recurring revenue, retention, and churn.
+- [Trials dashboard](https://developer.fastspring.com/docs/trials-dashboard.md): Analyze trial performance, conversion rates, and lifecycle trends.
+- [Retention dashboard](https://developer.fastspring.com/docs/retention-dashboard.md): Monitor retention rates, analyze cohorts, and reduce churn.
+- [Data exports](https://developer.fastspring.com/docs/data-exports.md): Export granular store data for external analysis and reporting.
+- [Interactive Quotes Overview](https://developer.fastspring.com/docs/interactive-quotes-overview.md)
+- [Create and Send an Interactive Quote](https://developer.fastspring.com/docs/create-and-send-an-interactive-quote.md)
+- [Interactive Quote Discounts](https://developer.fastspring.com/docs/discounts.md)
+- [Tagging Interactive Quotes](https://developer.fastspring.com/docs/interactive-quote-tags.md)
+- [Pricing Components (IQ)](https://developer.fastspring.com/docs/components.md)
+- [Published and Unpublished Changes (IQ)](https://developer.fastspring.com/docs/published-and-unpublished-changes.md)
+- [Templates (IQ)](https://developer.fastspring.com/docs/templates.md)
+- [Analytics and Tracking (IQ)](https://developer.fastspring.com/docs/analytics-and-tracking.md)
+- [Approval Workflow (IQ)](https://developer.fastspring.com/docs/approval-workflow.md)
+- [Team Management (IQ)](https://developer.fastspring.com/docs/team-and-account-management.md)
+- [Account Management](https://developer.fastspring.com/docs/account-management.md)
+- [Notifications](https://developer.fastspring.com/docs/notifications.md)
+- [Search for Interactive Quotes](https://developer.fastspring.com/docs/search-for-interactive-quotes.md)
+- [Drift Integration](https://developer.fastspring.com/docs/integrate-drift.md)
+- [FastSpring Checkout Integration (IQ)](https://developer.fastspring.com/docs/fastspring-integration.md)
+
+## API Reference
+- [Developer Hub](https://developer.fastspring.com/reference/developer-documentation-hub.md)
+- [Store Builder Overview](https://developer.fastspring.com/reference/store-builder-library-overview.md): Add e-commerce features to your website using FastSpring's Store Builder
+- [Directives](https://developer.fastspring.com/reference/directives.md): Display live product and order data in your HTML without writing JavaScript
+- [Actions](https://developer.fastspring.com/reference/actions.md): Add cart logic, launch checkout, or apply promo codes with simple HTML attributes
+- [Methods](https://developer.fastspring.com/reference/methods.md): Control cart, checkout, and localization behavior using JavaScript
+- [Callbacks](https://developer.fastspring.com/reference/callbacks.md): Run custom JavaScript after key FastSpring events like add to cart or checkout complete
+- [Session Objects](https://developer.fastspring.com/reference/session-object.md): Preload products, customer details, and settings before or during checkout
+- [Secure Payloads](https://developer.fastspring.com/reference/pass-a-secure-request.md): Pass sensitive customer or pricing data securely using an encrypted payload
+- [Embedded Payment Management Library](https://developer.fastspring.com/reference/embedded-payment-management-library.md)
+- [Checkout Components overview](https://developer.fastspring.com/reference/checkout-components-overview.md): Embed a fully styleable, PCI-compliant checkout directly into your site or app.
+- [Card](https://developer.fastspring.com/reference/checkout-components-card.md): Capture card details with a PCI-compliant, fully styleable card-entry form.
+- [Pay Button](https://developer.fastspring.com/reference/checkout-components-pay-button.md): Submit payments with a styleable button that supports regional disclaimers.
+- [Disclosures](https://developer.fastspring.com/reference/checkout-components-disclosures.md): Show the FastSpring reseller disclosure with auto-populated policy links.
+- [Vanilla JS](https://developer.fastspring.com/reference/checkout-components-vanilla-js.md): Walk through embedding Checkout Components on a plain HTML page using vanilla JavaScript.
+- [Configuration](https://developer.fastspring.com/reference/checkout-components-configuration.md): API reference for the three SDK methods that initialize, mount, and activate a checkout.
+- [Callbacks](https://developer.fastspring.com/reference/checkout-components-callbacks.md): Reference for every SDK callback — when each fires, what data it receives, and how they sequence.
+- [Style API](https://developer.fastspring.com/reference/checkout-components-style-api.md): How the SDK's state-and-category styling model works, including precedence rules and common pitfalls.
+- [API overview](https://developer.fastspring.com/reference/api-overview.md): Use the FastSpring API to programmatically manage your catalog, automate subscription lifecycles, and synchronize commerce data with your backend.
+- [Accounts](https://developer.fastspring.com/reference/accounts.md)
+- [Create an account](https://developer.fastspring.com/reference/create-an-account.md): Creates a new account object.  When you create an account, we recommend to include the customer's country. Some transactions may fail if you do not include it, as this field is required for specific payment methods.
+- [List all accounts](https://developer.fastspring.com/reference/list-all-accounts.md): Returns a list of your accounts.  If no parameters are sent, the operation will return an array of account IDs.
+- [Retrieve an account](https://developer.fastspring.com/reference/retrieve-an-account.md): Returns the details of an account with the given `account_id`.
+- [Update an account](https://developer.fastspring.com/reference/update-an-account.md): Updates an account by setting the values of the parameters passed. Any parameters not provided are left unchanged.
+- [Retrieve authenticated account management URL](https://developer.fastspring.com/reference/retrieve-authenticated-account-management-url.md): Returns the URL of a customer's Account Management Portal.  To direct customers to land on the **Subscriptions** tab instead of the **Orders** tab, append <code>#/subscriptions</code> to the URL returned in the API response.
+- [Coupons](https://developer.fastspring.com/reference/coupons-overview.md)
+- [List all coupons](https://developer.fastspring.com/reference/list-all-coupons.md): Returns an array of all coupon path identifiers.  **Note:** Returns path identifiers only — not full coupon objects. Use `GET /coupons/{coupon_id}` to retrieve full details for a specific coupon. Expansion is not supported on this endpoint.
+- [Create or update a coupon](https://developer.fastspring.com/reference/create-or-update-coupon.md): Creates a new coupon or updates an existing one. The operation is determined automatically based on whether the `coupon` path identifier already exists — no separate update endpoint is required.  The `action` field in the response confirms which operation was performed: `coupon.create` or `coupon.update`.  **Warning:** Including the `codes` array in an update request permanently replaces all existing codes. Omit the `codes` field to preserve existing codes.
+- [Retrieve a coupon](https://developer.fastspring.com/reference/retrieve-a-coupon.md): Returns full details for a specific coupon by its path identifier.
+- [Delete a coupon](https://developer.fastspring.com/reference/delete-a-coupon.md): Permanently deletes a coupon by its path identifier.  **Warning:** A coupon cannot be deleted while it has active codes. Remove all codes first using `DELETE /coupons/{coupon_id}/codes`, then delete the coupon.
+- [Add coupon codes](https://developer.fastspring.com/reference/add-coupon-codes.md): Adds new codes to an existing coupon. This operation is additive — existing codes are preserved and the new codes are appended.  **Code handling**  - **Case:** Codes are normalized to uppercase on storage. `summer10`   and `SUMMER10` are treated as the same code. - **Duplicates:** Duplicate codes within a single request are   accepted without error and echoed verbatim in the response, but   storage silently dedupes to a single entry per unique   (case-insensitive) code. Call   `GET /coupons/{coupon_id}/codes` after a write to confirm the   stored state. - **Format:** Codes must contain only alphanumeric characters,   hyphens, and underscores. Spaces and other special characters   are rejected.
+- [List all coupon codes](https://developer.fastspring.com/reference/list-all-coupon-codes.md): Returns all codes associated with a coupon.  **Note:** Use this endpoint to retrieve the full list of codes for coupons with more than 1,000 codes. The `GET /coupons/{coupon_id}` endpoint returns a maximum of 1,000 codes.
+- [Delete all coupon codes](https://developer.fastspring.com/reference/delete-all-coupon-codes.md): Permanently deletes all codes for a coupon.  **Warning:** After this operation, the coupon will have no active codes and cannot be applied at checkout until new codes are added via `POST /coupons/{coupon_id}`.
+- [Enhanced Discount Management in FastSpring APIs](https://developer.fastspring.com/reference/enhanced-coupon-and-discount-features.md)
+- [Orders](https://developer.fastspring.com/reference/orders.md)
+- [List all orders](https://developer.fastspring.com/reference/list-all-orders.md): Returns a list of your orders by order ID.
+- [Retrieve an order](https://developer.fastspring.com/reference/retrieve-an-order.md): Retrieves the details of an order with the given `order_id`.  If you specify multiple order IDs in the request, the response will return an array with each order object.
+- [Update order tags and attributes](https://developer.fastspring.com/reference/update-order-tags-and-attributes.md): Updates order tags and attributes.  Active subscriptions with these attributes will automatically update to reflect the new tags and attributes.
+- [Products](https://developer.fastspring.com/reference/products.md)
+- [Create or update products](https://developer.fastspring.com/reference/create-or-update-products.md): Creates products or updates existing products.  If you are creating products in bulk, you can add up to 300 at a time.
+- [List all product paths](https://developer.fastspring.com/reference/list-all-product-paths.md): Returns a list of all product path IDs.
+- [Retrieve a product](https://developer.fastspring.com/reference/retrieve-a-product.md): Retrieves the details of an existing product with the given `product_path`.
+- [Delete a product](https://developer.fastspring.com/reference/delete-a-product.md): Deletes a product with the given `product_path`.
+- [Create or update product offers](https://developer.fastspring.com/reference/create-or-update-product-offers.md): Creates product offers or updates existing product offers.  You can configure product offers to enhance the customer shopping experience by suggesting complementary or alternative products.
+- [Retrieve product offers](https://developer.fastspring.com/reference/retrieve-product-offers.md): Retrieves product offers based on a specific `product_path` and offer type.
+- [List all product prices](https://developer.fastspring.com/reference/list-all-product-prices.md): Returns all prices for all products, including product discount details.
+- [Retrieve a product price](https://developer.fastspring.com/reference/retrieve-a-product-price.md): Retrieves prices for a specific product with the given `product_path`, including product discount details.
+- [Preview product tax](https://developer.fastspring.com/reference/preview-product-tax.md): Preview estimated indirect taxes (VAT, GST, sales tax) for products before checkout.  Returns per-item details: - `jurisdiction`, `taxType`, `taxRate`, `taxPercent`, `taxPrice`, and localized display amounts.  Send requests as one or more country/currency groups: - U.S. groups: include `zip` at the **group level** to compute sales tax. If omitted, the response may return `taxRate: 0` and `taxPrice: 0`. ZIP is only supported at the group level. - Pricing:   - Virtual/non-catalog items: `pricing.price` is required.   - Catalog items: if `pricing.price` (or `price`) is provided, it overrides the catalog price for the preview.
+- [Subscriptions](https://developer.fastspring.com/reference/subscriptions.md)
+- [List all subscriptions](https://developer.fastspring.com/reference/list-all-subscriptions.md): Returns a list of all subscription IDs.
+- [Update a subscription](https://developer.fastspring.com/reference/update-a-subscription.md): Updates active subscriptions, including product changes, discounts, add-ons, renewal settings, and more.
+- [Preview a prorated plan change](https://developer.fastspring.com/reference/preview-a-prorated-plan-change.md): Generates a preview of the estimated charges, credits, or refunds for a subscription before making any changes.  This endpoint returns a prorated estimate for only one subscription per request.
+- [Retrieve a subscription](https://developer.fastspring.com/reference/retrieve-a-subscription.md): Retrieves the details of a subscription with the given `subscription_id`.
+- [Transfer subscriptions](https://developer.fastspring.com/reference/transfer-subscriptions.md): Transfers up to 20 subscriptions from a source account to a target account within the same `siteId`.    - `sourceAccountId` and `targetAccountId` (if provided) must reference the same `siteId`.   - A maximum of 20 subscriptions can be transferred per request.   In the “Try It!” panel, open the **EXAMPLES** dropdown to select a request example:    | **Request example**             | **When to use it**                                                                                          |   | ---------------------------- | ---------------------------------------------------------------------------------------------------------- |   | New Account Transfer     | Create a new target account **and** transfer subscriptions in one call.                                     |   | Existing Account Transfer | Transfer subscriptions to an **existing** target account.                                                  |
+- [Cancel a subscription](https://developer.fastspring.com/reference/cancel-a-subscription.md): Cancels an active subscription with the given `subscription_id`.
+- [List all subscription entries](https://developer.fastspring.com/reference/list-all-subscription-entries.md): Returns an array of order objects associated with the given `subscription_id`.  Each order object provides detailed information about transactions related to the subscription, including: - **Original Order**: The initial purchase associated with the subscription. - **Rebills**: Recurring transactions for subscription renewals. - **Prorations and Edits**: Transactions related to prorated adjustments or subscription changes.
+- [Rebill a managed subscription](https://developer.fastspring.com/reference/rebill-a-managed-subscription.md): Charges a customer for their [managed subscription](https://developer.fastspring.com/docs/managed-subscriptions-and-usage-based-billing).  This API processes charges immediately and sends notifications to the customer. It is used for managed subscriptions that rely on seller actions for charges, reminders, and deactivation, with no internal subscription date tracking.  For large rebill volumes (e.g., January 1st annual renewals), we recommend to divide workloads into batches and call the endpoint sequentially, waiting for each batch to complete.Partial failures in a batch are detailed in the response for each subscription.  **Note:** Routine payment failures (e.g., insufficient funds, soft decline) are now returned with a `200` status instead of `400`. The per-subscription `result` field indicates whether that subscription succeeded or failed; see the `error` object for failure details. `400` is now reserved for requests that were rejected outright — a hard decline blocking retry until the payment method is updated, or a subscription that has exceeded its max retry limit.
+- [Pause a subscription](https://developer.fastspring.com/reference/pause-a-subscription.md): Pauses a subscription with the given `subscription_id`.  The subscription pauses on the next billing cycle date and transitions to a "paused" status instead of charging the customer.
+- [Resume a subscription](https://developer.fastspring.com/reference/resume-a-subscription.md): Resumes a subscription that has been scheduled for a pause.  If you cancel an upcoming pause, FastSpring will immediately charge the customer and start a new billing cycle.
+- [Convert a subscription](https://developer.fastspring.com/reference/convert-a-subscription.md): Creates a session that allows a buyer to reactivate a trial subscription and convert it to a paid subscription.  **Preconditions:**  - The subscription is a trial without any payment method added. - The subscription was deactivated because the trial period ended without a payment method being added. - The subscription conversion period is still active. - Conversion is enabled for the subscription. - The reactivation request is made within the allowed conversion period: Deactivation date + conversion days <= API call date.
+- [List all subscription plan changes](https://developer.fastspring.com/reference/getsubscriptionplanchangehistory.md): Returns an array of subscription plan change history entries, detailing what changed, when the change occurred, and how it was modified.
+- [Create a co-term group](https://developer.fastspring.com/reference/createcotermgroup.md): Creates a new co-term group for eligible subscriptions under the same account.
+- [Generate co-term group estimate](https://developer.fastspring.com/reference/estimatecotermgroup.md): Calculates proration, tax, and next charge amounts for a co-term group without executing the changes.
+- [Execute co-term group changes](https://developer.fastspring.com/reference/executecotermgroup.md): Finalizes the co-term group and applies billing changes.  This operation generates an Order ID and returns the new aligned billing period dates for the group.
+- [Retrieve a co-term group](https://developer.fastspring.com/reference/getcotermgroup.md): Retrieves details for a specific co-term group using its ID.
+- [Update co-term group](https://developer.fastspring.com/reference/updatecotermgroup.md): Add or remove subscriptions from an existing co-term group.  Use the `action` parameter to specify "ADD" or "REMOVE".
+- [Delete a co-term group](https://developer.fastspring.com/reference/deletecotermgroup.md): Dissolves the co-term group.   Subscriptions are ungrouped and their status is set to "Opted Out". This does not cancel the subscriptions, only the grouping.
+- [Create a proforma invoice](https://developer.fastspring.com/reference/create-a-proforma-invoice.md): Creates a new proforma invoice that reflects changes you want to make to a subscription.
+- [Retrieve a proforma invoice](https://developer.fastspring.com/reference/retrieve-a-proforma-invoice.md): Retrieves a proforma invoice for the given `subscription_id`.  The invoice FastSpring returns provides an estimate of charges for the upcoming billing period, without taking into account any proposed changes to the plan.
+- [Configure cancel survey](https://developer.fastspring.com/reference/configure-cancel-survey.md): Creates or updates a cancel survey for a subscription.  Either `reasonId` or `reasonName` can be provided, but `reasonId` takes precedence.
+- [Retrieve cancel survey](https://developer.fastspring.com/reference/retrieve-cancel-survey.md): Retrieves the cancel survey state for a specific `subscriptionId`. - If the subscription is **active**, returns the full list of cancel reasons for display.  - If the subscription is **already canceled**, returns the selected reason, feedback, and language used during cancellation.
+- [Query cancel survey responses](https://developer.fastspring.com/reference/query-cancel-survey-responses.md): Returns a paginated list of cancel survey responses submitted within a specific date range.  Results can be filtered by `startDate`, `endDate`, and optionally by `productPath`.  Supports sorting by `creationTime` or `reasonId`, in ascending or descending order.
+- [Create an invoice](https://developer.fastspring.com/reference/create-an-invoice.md): Creates and finalizes a new invoice with custom contacts, items, pricing, and optional payment configuration.  This endpoint returns a detailed invoice object, including totals, payment URLs, and contact metadata, based on the request body provided.
+- [Retrieve an invoice](https://developer.fastspring.com/reference/getinvoicebyid.md): Retrieves the full details of an invoice using its unique `invoiceId`.  This endpoint returns all invoice metadata, contacts, items, organization info, and calculated financial totals including tax, discount, and shipping.
+- [Quotes](https://developer.fastspring.com/reference/quotes.md)
+- [Create a quote](https://developer.fastspring.com/reference/create-a-quote.md): Creates a new quote with an open status.
+- [List all quotes](https://developer.fastspring.com/reference/list-all-quotes.md): Returns a list of your quotes.
+- [Retrieve a quote](https://developer.fastspring.com/reference/retrieve-a-quote.md): Retrieves the details of an existing quote with the given `quote_id`.
+- [Update a quote](https://developer.fastspring.com/reference/update-a-quote.md): Updates an existing quote with the given `quote_id` by setting the values of the request body passed. Any properties not provided will be left unchanged.
+- [Cancel a quote](https://developer.fastspring.com/reference/cancel-a-quote.md): Cancels a quote with the given `quote_id` and sets the status to `CANCELED`. Once canceled, the quote link is no longer available.
+- [Returns](https://developer.fastspring.com/reference/returns.md)
+- [Create a return](https://developer.fastspring.com/reference/create-a-return.md): Creates an order return request for full, partial, or combined refunds and returns processing details for each requested return.  Use the **Examples** dropdown in the **Try It!** panel to select a request body:    | Example           | Description                                                                                         |   |-------------------|-----------------------------------------------------------------------------------------------------|   | **Full return**   | Submits a full refund for the specified order, returning 100% of its value without item‑level details. |   | **Partial return**| Issues a partial refund for the specified order, refunding only the listed items and amounts.       |   | **Combined return**| Mixes modes: one order is fully refunded, while another gets a partial refund on specified items.  |
+- [Retrieve a return](https://developer.fastspring.com/reference/retrieve-a-return.md): Retrieves the details of one or more returns.
+- [Sessions v1](https://developer.fastspring.com/reference/sessions-v1-overview.md)
+- [Create a session](https://developer.fastspring.com/reference/createordersession.md): Creates custom order sessions with various configurations, such as single product sessions, price overrides, coupons, and custom tags.
+- [Sessions](https://developer.fastspring.com/reference/sessions-overview.md)
+- [Create session](https://developer.fastspring.com/reference/createsession.md): Creates a new order session. Accepts customer details, line items, and custom pricing. Server-to-server authentication is required to modify specific restricted fields.
+- [Retrieve session](https://developer.fastspring.com/reference/retrievesession.md): Retrieves the complete details and current state of an existing order session.
+- [Update session](https://developer.fastspring.com/reference/updatesession.md): Updates an existing order session. Overwrites customer details, items, and custom prices with the provided arrays. Requires an authenticated request to modify restricted fields.
+- [Retrieve payment methods](https://developer.fastspring.com/reference/retrievepaymentmethods.md): Retrieves the ordered list of payment methods available for the specified session and checkout. Automatically filters unsupported methods and localizes the options for the buyer.
+- [Add session item](https://developer.fastspring.com/reference/addsessionitem.md): Appends a new product item to the cart of an existing order session.
+- [Remove session item](https://developer.fastspring.com/reference/removesessionitem.md): Removes an existing product item from the session cart.
+- [Update session item](https://developer.fastspring.com/reference/updatesessionitem.md): Updates an existing product item in the session cart. Typically used to modify quantities or apply custom pricing. Requires an authenticated request to modify pricing.
+- [Update session customer](https://developer.fastspring.com/reference/updatesessioncustomer.md): Updates specific customer and billing information on an existing session. Provides a reduced scope update compared to modifying the entire session payload.
+- [Events](https://developer.fastspring.com/reference/events.md)
+- [List all processed events](https://developer.fastspring.com/reference/list-all-processed-events.md): Returns a list of processed events within a specific time range.
+- [List all unprocessed events](https://developer.fastspring.com/reference/list-all-unprocessed-events.md): Returns a list of unprocessed events within a specific time range.  After you retrieve a missed event, you can mark it as processed by posting to the `/events` endpoint.
+- [Update an event](https://developer.fastspring.com/reference/update-an-event.md): Marks an event with the given `event_id` as either **processed** or **unprocessed**.
+- [Data](https://developer.fastspring.com/reference/data.md)
+- [Generate subscription report](https://developer.fastspring.com/reference/generate-subscription-report.md): Generates a subscription report.  You can apply filters on date range, country name, product name, and product path. For each filtered variable, you can define the columns you want to include in your report and how to group results.
+- [Generate revenue report](https://developer.fastspring.com/reference/generate-revenue-report.md): Generates a revenue report.  You can apply filters on date range, country name, product name, and product path. For each filtered variable, you can define the columns you want to include in your report and how to group results.
+- [List all jobs](https://developer.fastspring.com/reference/list-all-jobs.md): Returns a list of all jobs and their status.
+- [Retrieve a job](https://developer.fastspring.com/reference/retrieve-a-job.md): Returns the details of an existing job with the given `job_id`.
+- [Reset cache](https://developer.fastspring.com/reference/reset-cache.md): Resets the cache for data service endpoints.
+- [Download a report](https://developer.fastspring.com/reference/download-a-report.md): Downloads a report with the given `job_id`.
+- [Update a webhook key secret](https://developer.fastspring.com/reference/update-a-webhook-key-secret.md): Updates the HMAC secret for a webhook endpoint.   The HMAC secret is a key used to create an encrypted hash of the webhook payload, ensuring the integrity and authenticity of messages sent to your webhook URL.   Ensure your server can decrypt messages with the new HMAC key before updating. Discard the old HMAC secret after the update is completed.   Visit our [Message Security](https://developer.fastspring.com/reference/message-security) section for more details on how to use this HMAC secret.
+- [Webhooks Overview](https://developer.fastspring.com/reference/webhooks-overview.md): Use FastSpring Webhooks with your backend or third-party systems for advanced integration and tracking events.
+- [Webhook Expansion](https://developer.fastspring.com/reference/webhook-expansion.md): Overview of Webhook Expansion, and the contents that return when you enable it.
+- [Processed and unprocessed webhook events](https://developer.fastspring.com/reference/processed-and-unprocessed-webhook-events.md): Learn how to manage the lifecycle of webhook events, including marking them as processed, understanding retry logic, and retrieving missed events.
+- [Browser Scripts](https://developer.fastspring.com/reference/browser-scripts.md): Run custom-defined JavaScript functions inside the browser window.
+- [Message Security](https://developer.fastspring.com/reference/message-security.md)
+- [Account Related Webhooks](https://developer.fastspring.com/reference/accounts-1.md): Overview of account-related webhooks
+- [New Accounts](https://developer.fastspring.com/reference/accountcreated.md): account.created
+- [Edit Account Information](https://developer.fastspring.com/reference/accountupdated.md): account.updated
+- [Subscription Related Webhoooks](https://developer.fastspring.com/reference/subscriptions-1.md): Overview of subscription-related webhooks
+- [New Subscriptions](https://developer.fastspring.com/reference/subscriptionactivated.md): subscription.activated
+- [Canceled Subscriptions](https://developer.fastspring.com/reference/subscription-canceled.md): subscription.canceled
+- [Subscription Charges](https://developer.fastspring.com/reference/subscription-charge-completed.md): subscription.charge.completed
+- [Unsuccessful Subscription Rebills](https://developer.fastspring.com/reference/subscription-charge-failed.md): subscription.charge.failed
+- [Deactivated Subscriptions](https://developer.fastspring.com/reference/subscription-deactivated.md): subscription.deactivated
+- [Overdue Payment Notifications](https://developer.fastspring.com/reference/subscriptionpaymentoverdue.md): subscription.payment.overdue
+- [Subscription Reminders](https://developer.fastspring.com/reference/subscriptionpaymentreminder.md): subscription.payment.reminder
+- [Free Trial Notifications](https://developer.fastspring.com/reference/subscriptiontrialreminder.md): subscription.trial.reminder
+- [Remove a Subscription Cancelation](https://developer.fastspring.com/reference/subscriptionuncanceled.md): subscription.uncanceled
+- [Edit a Subscription](https://developer.fastspring.com/reference/subscription-updated.md): subscription.updated
+- [Co-term Webhooks](https://developer.fastspring.com/reference/co-term-webhooks.md): Overview of co-term webhooks.
+- [Co-term Group Created](https://developer.fastspring.com/reference/co-term-group-created.md): Event payload example and property overview for subscription.group.created
+- [Co-term Group Prorated](https://developer.fastspring.com/reference/co-term-group-prorated.md): Event payload example and property overview for subscription.group.prorated
+- [Co-term Payment Charge Completed](https://developer.fastspring.com/reference/co-term-payment-charge-completed.md): Event payload example and property overview for subscription.group.charge.completed
+- [Co-term Group Updated](https://developer.fastspring.com/reference/co-term-group-updated.md): Event payload example and property overview for subscription.group.updated
+- [Co-term Payment Reminder](https://developer.fastspring.com/reference/co-term-payment-reminder.md): Event payload example and property overview for subscription.group.payment.reminder
+- [Co-term Payment Charge Failed](https://developer.fastspring.com/reference/co-term-payment-charge-failed.md): Event payload example and property overview for subscription.group.payment.charge.failed
+- [Co-term Payment Overdue](https://developer.fastspring.com/reference/co-term-payment-overdue.md): Event payload example and property overview for subscription.group.payment.overdue
+- [Co-term Group Deactivated](https://developer.fastspring.com/reference/co-term-group-deactivated.md): Event payload example and property overview for subscription.group.deactivated
+- [Order Related Webhooks](https://developer.fastspring.com/reference/orders-1.md): Overview of order-related webhooks
+- [Successful Orders](https://developer.fastspring.com/reference/ordercompleted.md): order.completed
+- [Pending Payments](https://developer.fastspring.com/reference/orderpaymentpending.md): order.payment.pending
+- [Approve a Purchase Order](https://developer.fastspring.com/reference/orderapprovalpending.md): order.approval.pending
+- [Canceled Orders](https://developer.fastspring.com/reference/ordercanceled.md): order.canceled
+- [Unsuccessful Orders](https://developer.fastspring.com/reference/orderfailed.md): order.failed
+- [Unsuccessful Fulfillments](https://developer.fastspring.com/reference/fulfillmentfailed.md): fulfillment.failed
+- [Mailing List Entries](https://developer.fastspring.com/reference/mailinglistentry-webhooks.md): Use the mailingListEntry webhooks to collect abandoned cart information and send remarketing messages.
+- [Order Chargeback](https://developer.fastspring.com/reference/order-chargeback.md): `chargeback.created`
+- [Return Webhook Events](https://developer.fastspring.com/reference/returns-1.md): Overview of return and refund webhook events
+- [Return or Refund an Order](https://developer.fastspring.com/reference/returncreated.md): return.created
+- [Payout Entry Created](https://developer.fastspring.com/reference/payoutentrycreated.md): payoutEntry.created
+- [Quote Related Webhooks](https://developer.fastspring.com/reference/quotes-1.md): Overview of quote-related webhook events
+- [Create a New Quote](https://developer.fastspring.com/reference/quotecreated.md): quote.created
+- [Quote Status Updates](https://developer.fastspring.com/reference/quoteupdated.md): quote.updated
+
+## Changelog
+- [July 2026 Refinements](https://developer.fastspring.com/changelog/july-2026-refinements.md)
+- [Capture more mobile buyers with Venmo](https://developer.fastspring.com/changelog/capture-more-mobile-buyers-with-venmo.md)
+- [Control payment offerings with self-serve payment method management](https://developer.fastspring.com/changelog/control-payment-offerings-with-self-serve-payment-method-management.md)
+- [Accelerate conversions with 1ClickPay for PayPal](https://developer.fastspring.com/changelog/accelerate-conversions-with-1clickpay-for-paypal.md)
+- [June 2026 Refinements](https://developer.fastspring.com/changelog/june-2026-refinements.md)
+- [Drive growth with the FunnelFox partnership](https://developer.fastspring.com/changelog/drive-growth-with-the-funnelfox-partnership.md)
+- [Embed styleable checkouts with Checkout Components (beta)](https://developer.fastspring.com/changelog/embed-styleable-checkouts-with-checkout-components-beta.md)
+- [Process refunds for order-level coupons](https://developer.fastspring.com/changelog/process-refunds-for-order-level-coupons.md)
+- [Streamline subscription editing workflows](https://developer.fastspring.com/changelog/streamline-subscription-editing-workflows.md)
+- [May 2026 Refinements](https://developer.fastspring.com/changelog/may-2026-refinements.md)

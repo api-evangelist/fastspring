@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FastSpring Accounts Data API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a revenue data job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fastspring.com/data/jobs/revenue-report"
+          },
+          "docs": "Generate a revenue data job"
+        },
+        {
+          "info": {
+            "name": "Generate a subscription data job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fastspring.com/data/jobs/subscription-report"
+          },
+          "docs": "Generate a subscription data job"
+        },
+        {
+          "info": {
+            "name": "Get data job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fastspring.com/data/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get data job status"
+        },
+        {
+          "info": {
+            "name": "Download a completed data job report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fastspring.com/data/jobs/:job_id/download",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download a completed data job report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

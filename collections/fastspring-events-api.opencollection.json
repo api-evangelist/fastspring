@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FastSpring Accounts Events API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List processed / unprocessed webhook events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fastspring.com/events"
+          },
+          "docs": "List processed / unprocessed webhook events"
+        },
+        {
+          "info": {
+            "name": "Mark an event as processed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fastspring.com/events/:event_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mark an event as processed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
