@@ -9,6 +9,18 @@ description: >-
   Authentication using credentials issued from the FastSpring App Dashboard
   and with HMAC SHA-256 signing available for webhook payload verification.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
