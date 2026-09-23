@@ -1,18 +1,7 @@
 {
   "provider": "fastspring",
   "sources": [
-    "fastspring-accounts-api-openapi.yml",
-    "fastspring-coupons-api-openapi.yml",
-    "fastspring-data-api-openapi.yml",
-    "fastspring-events-api-openapi.yml",
-    "fastspring-invoices-api-openapi.yml",
-    "fastspring-orders-api-openapi.yml",
-    "fastspring-products-api-openapi.yml",
-    "fastspring-quotes-api-openapi.yml",
-    "fastspring-returns-api-openapi.yml",
-    "fastspring-sessions-api-openapi.yml",
-    "fastspring-subscriptions-api-openapi.yml",
-    "fastspring-webhooks-api-openapi.yml"
+    "_original/fastspring-openapi.yml"
   ],
   "outputs": [
     "fastspring-accounts-api-openapi.yml",
@@ -31,6 +20,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fastspring-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fastspring-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-coupons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-quotes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-returns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fastspring-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

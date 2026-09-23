@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: FastSpring Accounts API
-  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform.
   version: 1.0.0
   contact:
     name: FastSpring Developer Hub
@@ -22,6 +22,8 @@ paths:
       responses:
         '200':
           description: List of accounts
+      operationId: getAccounts
+      x-operation-id-source: derived
     post:
       tags:
       - Accounts
@@ -35,6 +37,8 @@ paths:
       responses:
         '200':
           description: Created account
+      operationId: postAccounts
+      x-operation-id-source: derived
   /accounts/{account_id}:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -45,6 +49,8 @@ paths:
       responses:
         '200':
           description: Account
+      operationId: getAccountsByAccountId
+      x-operation-id-source: derived
     patch:
       tags:
       - Accounts
@@ -58,6 +64,8 @@ paths:
       responses:
         '200':
           description: Updated account
+      operationId: patchAccountsByAccountId
+      x-operation-id-source: derived
   /accounts/{account_id}/portal-url:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -68,6 +76,8 @@ paths:
       responses:
         '200':
           description: Portal URL
+      operationId: getAccountsByAccountIdPortalUrl
+      x-operation-id-source: derived
 components:
   parameters:
     AccountId:

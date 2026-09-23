@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FastSpring Accounts Products API
-  description: REST API for FastSpring's ecommerce / merchant-of-record platform. Covers orders, subscriptions, products, coupons, accounts (customers), sessions (checkout), invoices, quotes, returns, events (webhook history), data jobs (reports), and webhook key rotation. Authenticated via HTTP Basic credentials issued from the FastSpring App Dashboard under Integrations > API Credentials. Rate limited to 250 calls per minute per IP. Requires TLS 1.2+, UTF-8 encoding, a User-Agent header, and Content-Type application/json on writes.
+  title: FastSpring Products API
+  description: REST API for FastSpring's ecommerce / merchant-of-record platform.
   version: 1.0.0
   contact:
     name: FastSpring Developer Hub
@@ -22,6 +22,8 @@ paths:
       responses:
         '200':
           description: Products
+      operationId: getProducts
+      x-operation-id-source: derived
     post:
       tags:
       - Products
@@ -35,6 +37,8 @@ paths:
       responses:
         '200':
           description: Result
+      operationId: postProducts
+      x-operation-id-source: derived
   /products/{product_path}:
     parameters:
     - $ref: '#/components/parameters/ProductPath'
@@ -45,6 +49,8 @@ paths:
       responses:
         '200':
           description: Product
+      operationId: getProductsByProductPath
+      x-operation-id-source: derived
     delete:
       tags:
       - Products
@@ -52,6 +58,8 @@ paths:
       responses:
         '200':
           description: Deleted
+      operationId: deleteProductsByProductPath
+      x-operation-id-source: derived
   /products/{product_path}/prices:
     parameters:
     - $ref: '#/components/parameters/ProductPath'
@@ -62,6 +70,8 @@ paths:
       responses:
         '200':
           description: Prices
+      operationId: getProductsByProductPathPrices
+      x-operation-id-source: derived
 components:
   parameters:
     ProductPath:
