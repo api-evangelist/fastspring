@@ -35,6 +35,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fastspring.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
   - E-Commerce
   - Merchant of Record
@@ -346,6 +349,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/fastspring-capability-edges.yml
+    name: FastSpring Business Capability Map
   - type: AgenticAccess
     url: agentic-access/fastspring-agentic-access.yml
   - type: TrustCenter
