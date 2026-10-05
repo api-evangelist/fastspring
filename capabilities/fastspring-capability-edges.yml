@@ -1,0 +1,65 @@
+slug: fastspring
+provider: FastSpring
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Subscriptions
+  spec_file: fastspring-subscriptions-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.9
+  evidence: POST /subscriptions/{subscription_id}/pause Pause a subscription; POST /subscriptions/{subscription_id}/cancel
+    Cancel a subscription; POST /subscriptions/{subscription_id}/convert Convert trial to paid
+  reason: Operations span the in-life subscription lifecycle (modify, pause, cancel, trial conversion),
+    so the L1 subscription lifecycle capability is clear while the evidence covers several sub-capabilities
+    at once.
+- tag: Coupons
+  spec_file: fastspring-coupons-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.85
+  evidence: POST /coupons/{coupon_id} Create or update a coupon; POST /coupons/{coupon_id}/codes Add codes
+    to a coupon
+  reason: Operations create and manage coupons and their redemption codes, which is discount and promotion
+    administration.
+- tag: Invoices
+  spec_file: fastspring-invoices-api-openapi.yml
+  capability_id: BC-4250.30
+  capability_id_l1: BC-4250
+  capability_name: Invoicing & Statement Management
+  confidence: 0.82
+  evidence: POST /invoices Create a custom invoice; GET /invoices/{invoice_id} Retrieve an invoice
+  reason: Invoice creation and retrieval on a subscription-commerce platform is invoicing and statement
+    management.
+- tag: Accounts
+  spec_file: fastspring-accounts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.72
+  evidence: GET /accounts List accounts; POST /accounts Create an account; GET /accounts/{account_id}/portal-url
+    Get an account's management portal URL
+  reason: Accounts in this ecommerce platform are customer records (create/update/retrieve plus a customer
+    self-management portal link), i.e. customer master data. Moderate confidence because the tag could
+    also be read as a merchant/tenant construct.
+- tag: Quotes
+  spec_file: fastspring-quotes-api-openapi.yml
+  capability_id: BC-410.40
+  capability_id_l1: BC-410
+  capability_name: Quote & Configuration Management
+  confidence: 0.7
+  evidence: POST /quotes Create a quote; POST /quotes/{quote_id}/cancel Cancel a quote
+  reason: Quote creation, update and cancellation is quote management in the lead-to-order flow; some
+    ambiguity with subscription contracting since the quotes may cover subscription offers.
