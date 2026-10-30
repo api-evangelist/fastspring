@@ -1,4 +1,4 @@
-# FastSpring (fastspring)
+# FastSpring
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,69 +66,141 @@
 
 FastSpring is a full-service ecommerce and merchant-of-record platform for SaaS, software, and digital product companies, handling global payments, tax compliance, subscription billing, checkout, and revenue management. The FastSpring API is a REST interface for managing orders, subscriptions, products, coupons, customers, and webhook events, secured via HTTP Basic Authentication using credentials issued from the FastSpring App Dashboard and with HMAC SHA-256 signing available for webhook payload verification.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/apis.yml)
+**Areas:** E-Commerce · Merchant of Record · Subscription Billing · Payments · SaaS Billing · Checkout · Tax Compliance
 
-## Scope
+## FastSpring on APIs.io
 
-- **Type:** Index
+Everything profiled for FastSpring is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fastspring/](https://apis.io/providers/fastspring/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- Ecommerce
-- Merchant of Record
-- Subscription Billing
-- Payments
-- SaaS Billing
-- Checkout
-- Tax Compliance
+- [FastSpring Accounts API](https://apis.io/apis/fastspring/fastspring-accounts-api/) — The Accounts API from FastSpring — 3 operation(s) for accounts.
+- [FastSpring Coupons API](https://apis.io/apis/fastspring/fastspring-coupons-api/) — The Coupons API from FastSpring — 3 operation(s) for coupons.
+- [FastSpring Data API](https://apis.io/apis/fastspring/fastspring-data-api/) — The Data API from FastSpring — 4 operation(s) for data.
+- [FastSpring Events API](https://apis.io/apis/fastspring/fastspring-events-api/) — The Events API from FastSpring — 2 operation(s) for events.
+- [FastSpring Invoices API](https://apis.io/apis/fastspring/fastspring-invoices-api/) — The Invoices API from FastSpring — 2 operation(s) for invoices.
+- [FastSpring Orders API](https://apis.io/apis/fastspring/fastspring-orders-api/) — The Orders API from FastSpring — 2 operation(s) for orders.
+- [FastSpring Products API](https://apis.io/apis/fastspring/fastspring-products-api/) — The Products API from FastSpring — 3 operation(s) for products.
+- [FastSpring Quotes API](https://apis.io/apis/fastspring/fastspring-quotes-api/) — The Quotes API from FastSpring — 3 operation(s) for quotes.
+- [FastSpring Returns API](https://apis.io/apis/fastspring/fastspring-returns-api/) — The Returns API from FastSpring — 2 operation(s) for returns.
+- [FastSpring Sessions API](https://apis.io/apis/fastspring/fastspring-sessions-api/) — The Sessions API from FastSpring — 5 operation(s) for sessions.
+- [FastSpring Subscriptions API](https://apis.io/apis/fastspring/fastspring-subscriptions-api/) — The Subscriptions API from FastSpring — 7 operation(s) for subscriptions.
+- [FastSpring Webhooks API](https://apis.io/apis/fastspring/fastspring-webhooks-api/) — The Webhooks API from FastSpring — 1 operation(s) for webhooks.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-11
-- **Modified:** 2026-05-30
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### FastSpring API
+Event-driven and webhook contracts.
 
-REST API for FastSpring's ecommerce platform covering orders, subscriptions, products, coupons, customers, sessions, returns, and webhooks. Authenticated using HTTP Basic credentials issued in the FastSpring App Dashboard under Integrations > API Credentials, with HMAC SHA-256 signing available to verify webhook payloads.
+- [FastSpring Webhooks](https://apis.io/asyncapis/fastspring/fastspring-asyncapi/)
 
-- **Human URL:** [https://developer.fastspring.com](https://developer.fastspring.com)
-- **Base URL:** `https://api.fastspring.com`
+#### Event channels (1)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Ecommerce
-- Subscription Billing
-- Payments
-- Orders
-- Webhooks
+- [webhook](https://apis.io/channels/fastspring/webhook/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://developer.fastspring.com/reference)
-- [Getting Started](https://developer.fastspring.com/reference/getting-started-with-your-api)
-- [Authentication](https://developer.fastspring.com/reference/authentication)
-- [Webhooks](https://developer.fastspring.com/reference/webhooks)
-- [Message  Security](https://developer.fastspring.com/reference/message-security)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/openapi/fastspring-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/fastspring/refs/heads/main/asyncapi/fastspring-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/fastspring.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fastspring.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Common Properties
+- [Fastspring Agentic Access](https://apis.io/agentic-access/fastspring/fastspring-agentic-access/)
 
-- [GitHub Organization](https://github.com/FastSpring)
-- [LinkedIn](https://www.linkedin.com/company/fastspring)
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [FastSpring API](https://apis.io/collections/fastspring/open-fastspring/)
+- [FastSpring Accounts API](https://apis.io/collections/fastspring/open-fastspring-accounts-api/)
+- [FastSpring Accounts Coupons API](https://apis.io/collections/fastspring/open-fastspring-coupons-api/)
+- [FastSpring Accounts Data API](https://apis.io/collections/fastspring/open-fastspring-data-api/)
+- [FastSpring Accounts Events API](https://apis.io/collections/fastspring/open-fastspring-events-api/)
+- [FastSpring Accounts Invoices API](https://apis.io/collections/fastspring/open-fastspring-invoices-api/)
+- [FastSpring Accounts Orders API](https://apis.io/collections/fastspring/open-fastspring-orders-api/)
+- [FastSpring Accounts Products API](https://apis.io/collections/fastspring/open-fastspring-products-api/)
+- [FastSpring Accounts Quotes API](https://apis.io/collections/fastspring/open-fastspring-quotes-api/)
+- [FastSpring Accounts Returns API](https://apis.io/collections/fastspring/open-fastspring-returns-api/)
+- [FastSpring Accounts Sessions API](https://apis.io/collections/fastspring/open-fastspring-sessions-api/)
+- [FastSpring Accounts Subscriptions API](https://apis.io/collections/fastspring/open-fastspring-subscriptions-api/)
+- [FastSpring Accounts Webhooks API](https://apis.io/collections/fastspring/open-fastspring-webhooks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [FastSpring — asyncapi rules](https://apis.io/rules/fastspring/fastspring-asyncapi-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Fastspring Authentication](https://apis.io/security/fastspring/fastspring-authentication/)
+- [Fastspring Domain Security](https://apis.io/security/fastspring/fastspring-domain-security/)
+- [Fastspring Trust Center](https://apis.io/security/fastspring/fastspring-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://fastspring.com)
 - [Documentation](https://developer.fastspring.com)
 - [Pricing](https://fastspring.com/pricing)
-- [Sign Up](https://fastspring.com/contact-sales)
-- [App  Dashboard](https://app.fastspring.com)
 - [Support](https://fastspring.com/support)
-- [L L Ms Txt](https://developer.fastspring.com/llms.txt)
+- [Blog](https://fastspring.com/blog/feed/)
+- [GitHub](https://github.com/FastSpring)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 52.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 6.6 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 31.6 |
+
+**Agent readiness 20.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fastspring/](https://apis.io/providers/fastspring/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for FastSpring: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fastspring/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
